@@ -35,15 +35,17 @@ function UGTiles(){
 	
 	this.events = {
 			THUMB_SIZE_CHANGE: "thumb_size_change",
-			TILES_FIRST_PLACED: "tiles_first_placed"		//only in case of justified
+			TILES_FIRST_PLACED: "tiles_first_placed",		//only in case of justified
+			ALL_TILES_LOADED: "all_tiles_loaded"
 	};
 	
 	var g_temp = {
-			isFixedMode: false,   //is tiles is custom sized, not related to the images that inside
 			isFirstTimeRun:true,   //if run once
 			handle:null,		   //interval handle
 			isTransActive: false,  //is transition active
-			isTransInited: false  //if the transition function is set
+			isTransInited: false,  //if the transition function is set
+			isFirstPlaced: true,   //is first time placed
+			isAllLoaded: false
 	};
 	
     var g_nestedWork = {
@@ -106,8 +108,12 @@ function UGTiles(){
 	 */
 	function setHtml(objParent){
 		
-		if(!objParent)
-			var objParent = g_objWrapper;
+		if(!objParent){
+			if(g_objParent)
+				objParent = g_objParent;
+			else
+				var objParent = g_objWrapper;
+		}
 		
 		g_objParent = objParent;
 		
@@ -250,7 +256,7 @@ function UGTiles(){
 	 * fill common tiles vars
 	 */
 	function fillTilesVars(){
-
+		
 		g_vars.colWidth = g_options.tiles_col_width;
 		g_vars.minCols = g_options.tiles_min_columns;
 		g_vars.maxCols = g_options.tiles_max_columns;
@@ -318,9 +324,7 @@ function UGTiles(){
 				g_vars.addX = g_vars.galleryWidth - g_vars.totalWidth;
 			break;
 		}
-		
-		g_vars.maxColHeight = 0;
-		
+				
 		//get posx array (constact to all columns)
 		g_vars.arrPosx = [];		
 		for(col = 0; col < g_vars.numCols; col++){
@@ -328,12 +332,20 @@ function UGTiles(){
 			g_vars.arrPosx[col] = colX + g_vars.addX;
 		}
 		
-		//empty heights array
-		g_vars.colHeights = [0];
-
 	}
 	
 	
+	/**
+	 * init col heights
+	 */
+	function initColHeights(){
+		
+		g_vars.maxColHeight = 0;
+		
+		//empty heights array
+		g_vars.colHeights = [0];
+		
+	}
 	
 	
 	
@@ -415,14 +427,15 @@ function UGTiles(){
 			toShow = false;
 		
 		fillTilesVars();
+		initColHeights();
 		
-		var objThumbs = g_thumbs.getThumbs();
-		
+		var objThumbs = g_thumbs.getThumbs(g_thumbs.type.GET_THUMBS_RATIO);
+				
 		//do some operation before the transition
 		doBeforeTransition();
-				
+		
 		//resize all thumbs
-		g_objTileDesign.resizeAllTiles(g_vars.colWidth, g_objTileDesign.resizemode.VISIBLE_ELEMENTS);
+		g_objTileDesign.resizeAllTiles(g_vars.colWidth, g_objTileDesign.resizemode.VISIBLE_ELEMENTS, objThumbs);
 		
 		//place elements
 		for(var index = 0; index < objThumbs.length; index++){
@@ -544,74 +557,67 @@ function UGTiles(){
 	}
 	
 	
-	
 	/**
-	 * run columns type
+	 * run columns type - place tiles that are not loaded yet
 	 */
 	function runColumnsType(){
-
-		var objThumbs = g_thumbs.getThumbs();
 		
-		fillTilesVars();
+		//get thumbs only when the ratio not set
+		var objThumbs = g_thumbs.getThumbs(g_thumbs.type.GET_THUMBS_NO_RATIO);
 		
-		var diffWidth = Math.abs(g_vars.galleryWidth - g_vars.totalWidth);
-
-		//set initial height of the parent by estimation
-		if(g_options.tiles_set_initial_height == true && g_functions.isScrollbarExists() == false && diffWidth < 25){
+		if(!objThumbs || objThumbs.length == 0)
+			return(false);
+		
+		g_temp.isAllLoaded = false;
+				
+		if(g_temp.isFirstPlaced == true){
 			
-			var numThumbs = objThumbs.length;
-			var numRows = Math.ceil(objThumbs.length / g_vars.numCols);
-			var estimateHeight = numRows * g_options.tiles_col_width * 0.75;
-			
-			g_objParent.height(estimateHeight);
 			fillTilesVars();
+			initColHeights();
+			
+			var diffWidth = Math.abs(g_vars.galleryWidth - g_vars.totalWidth);
+			
+			//set initial height of the parent by estimation
+			if(g_options.tiles_set_initial_height == true && g_functions.isScrollbarExists() == false && diffWidth < 25){
+				
+				var numThumbs = objThumbs.length;
+				var numRows = Math.ceil(objThumbs.length / g_vars.numCols);
+				var estimateHeight = numRows * g_options.tiles_col_width * 0.75;
+				
+				g_objParent.height(estimateHeight);
+				fillTilesVars();
+			}
+			
 		}
 		
 		
 		objThumbs.fadeTo(0,0);
-		var objImages = jQuery(g_objParent).find("img.ug-thumb-image");
-
+		var objImages = objThumbs.find("img.ug-thumb-image");
 		
-		if(g_temp.isFixedMode == true){		//fixed mode type - just place tiles before images loaded
-			
-			g_objThis.trigger(t.events.TILES_FIRST_PLACED);
-			
-			placeTiles(true);
-			
-			g_functions.checkImagesLoaded(objImages, function(){
-				setTransition();
-			});
-			
-		}else{	//dynamic size type
-			
-			var initNumCols = g_vars.numCols;
-			var initWidth = g_vars.galleryWidth;
-			var isFirstPlace = false;
-			
-			//on place the tile as it loads. After all tiles loaded,check position again.
-			g_functions.checkImagesLoaded(objImages, function(){
-								
-				fillTilesVars();
-				
-				if(initNumCols != g_vars.numCols || initWidth != g_vars.galleryWidth){
-					placeTiles(false);
-				}
-				
-				setTransition();
-				
-			} ,function(objImage, isError){
-				
-				if(isFirstPlace == false)
-					g_objThis.trigger(t.events.TILES_FIRST_PLACED);
-				
-				isFirstPlace = true;
-				
-				onSingleImageLoad(objImage, isError);
-			
-			});
-			
-		}//end dynamic mode type
+		var initNumCols = g_vars.numCols;
+		var initWidth = g_vars.galleryWidth;
 		
+		//on place the tile as it loads. After all tiles loaded,check position again.
+		g_functions.checkImagesLoaded(objImages, function(){
+						
+			fillTilesVars();
+			
+			if(initNumCols != g_vars.numCols || initWidth != g_vars.galleryWidth){
+				placeTiles(false);
+			}
+			
+			setTransition();
+			g_objThis.trigger(t.events.ALL_TILES_LOADED);
+			
+		} ,function(objImage, isError){
+			
+			if(g_temp.isFirstPlaced == true)
+				g_gallery.triggerEvent(t.events.TILES_FIRST_PLACED);	//set to false
+			
+			onSingleImageLoad(objImage, isError);
+		
+		});
+					
 		
 	}
 	
@@ -626,7 +632,7 @@ function UGTiles(){
 		
 		var galleryWidth = getParentWidth();
 		
-		var objTiles = g_thumbs.getThumbs();
+		var objTiles = g_thumbs.getThumbs(true);
 		var rowHeightOpt = g_options.tiles_justified_row_height;
 		var arrWidths = [];
 		var totalWidth = 0;
@@ -831,6 +837,8 @@ function UGTiles(){
 		var objImages = jQuery(g_objWrapper).find("img.ug-thumb-image");
 		var objTiles = g_thumbs.getThumbs();
 		
+		g_temp.isAllLoaded = false;
+		
 		objTiles.fadeTo(0,0);				
 		
 		g_functions.checkImagesLoaded(objImages, function(){
@@ -838,8 +846,11 @@ function UGTiles(){
 			setTimeout(function(){
 				placeJustified(true);
 				objTiles.fadeTo(0,1);
-				g_objThis.trigger(t.events.TILES_FIRST_PLACED);
+				g_gallery.triggerEvent(t.events.TILES_FIRST_PLACED);
 				setTransition();
+				
+				g_objThis.trigger(t.events.ALL_TILES_LOADED);
+				
 			});
 			
 		}, function(objImage, isError){
@@ -866,8 +877,10 @@ function UGTiles(){
         var objImages = jQuery(g_objWrapper).find("img.ug-thumb-image");
         var objTiles = g_thumbs.getThumbs();
         
+        g_temp.isAllLoaded = false;
+        
         objTiles.fadeTo(0, 0);
-
+        
         g_functions.checkImagesLoaded(objImages, function () {
         	
         	if(g_gallery.isMobileMode() == true){
@@ -876,8 +889,9 @@ function UGTiles(){
         	else
         		placeNestedImages(true);
             
-            g_objThis.trigger(t.events.TILES_FIRST_PLACED);
+        	g_gallery.triggerEvent(t.events.TILES_FIRST_PLACED);
             setTransition();
+            g_objThis.trigger(t.events.ALL_TILES_LOADED);
 
         }, function (objImage, isError) {
 
@@ -923,9 +937,7 @@ function UGTiles(){
         g_nestedWork.gridY = 0;
         g_arrNestedItems = []
         
-        trace(g_nestedWork);
-        
-    	var objTiles = g_thumbs.getThumbs();
+    	var objTiles = g_thumbs.getThumbs(true);
 		objTiles.each(function(){
 			var objTile = jQuery(this);
 		    var sizes = setNestedSize(objTile);
@@ -1643,7 +1655,10 @@ function UGTiles(){
 		
 		if(g_temp.isFirstTimeRun == true)
 			return(true);
-			
+		
+		if(g_temp.isAllLoaded == false)
+			return(false);
+		
 		switch(g_options.tiles_type){
 			case "columns":
 				placeTiles(false);
@@ -1671,7 +1686,17 @@ function UGTiles(){
 	 */
 	function initEvents(){
 		
+		g_objThis.on(t.events.ALL_TILES_LOADED, function(){
+			
+			g_temp.isAllLoaded = true;
+			
+		});
+		
 		g_objGallery.on(g_gallery.events.SIZE_CHANGE, onResize);
+		
+		g_objGallery.on(t.events.TILES_FIRST_PLACED,function(){
+			g_temp.isFirstPlaced = false;
+		});
 		
 		g_objTileDesign.initEvents();
 				
@@ -1691,7 +1716,7 @@ function UGTiles(){
 		}
 		
 		g_objTileDesign.run();
-				
+		
 		switch(g_options.tiles_type){
 			default:
 			case "columns":
@@ -1717,17 +1742,11 @@ function UGTiles(){
 		
 		g_objGallery.off(g_gallery.events.SIZE_CHANGE);
 		g_objTileDesign.destroy();
+		g_objGallery.off(t.events.TILES_FIRST_PLACED);
+		
 	}
 	
-	/**
-	 * set the custom size mode.
-	 * set it before the init
-	 */
-	this.setFixedSizeMode = function(){
-		g_temp.isFixedMode = true;
-		g_objTileDesign.setFixedMode();
-	}
-	
+		
 	
 	/**
 	 * init function for avia controls
@@ -1759,6 +1778,34 @@ function UGTiles(){
 		run();
 	}
 	
+	
+	/**
+	 * run the new items
+	 */
+	this.runNewItems = function(){
+		
+		if(!g_objParent)
+			throw new Error("Can't run new items - parent not set");
+		
+		g_objTileDesign.setHtml(g_objParent, true);
+		
+		g_objTileDesign.run(true);
+		
+		
+		switch(g_options.tiles_type){
+			case "columns":
+				
+				runColumnsType();
+				
+			break;
+			default:
+			case "justified":
+			case "nested":
+				throw new Error("Tiles type: "+g_options.tiles_type+" not support load more yet");
+			break;
+		}
+		
+	}
 	
 }
 

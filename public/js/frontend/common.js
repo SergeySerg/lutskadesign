@@ -1,295 +1,85 @@
 $(function(){
 
+    $('.slide,.header-section').css({height : $( window ).height()});
+    $('.page-about-section, .contact-section').css({height : ($( window ).height() - 105)});
+
 /***********setting on main*************/
     $(".owl-carousel").owlCarousel({
-        autoWidth:true,
-        items:4,
-        itemsDesktop : [1199,4],
-        itemsDesktopSmall : [980,3],
-        itemsTablet: [768,2],
-        itemsTabletSmall: false,
-        itemsMobile : [479,1],
-        nav:false,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        items:1,
         loop: true,
-        autoPlay: 4000,
-        dots : false
+        autoplay: true,
+        smartSpeed: 1000,
+        nav: true,
+        navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+        dots: false
     });
 /***********END setting on main*************/
 
-/***********setting for licenses*************/
-    $('.flex-gallery').each(function(){
-        $(this).unitegallery({
-            gallery_theme: "tilesgrid",
-            gallery_width:"100%",              //gallery width
-            grid_space_between_cols:15,
-            grid_space_between_rows:5,
-            grid_space_between_mobile:0,
-            tile_enable_border:false,
-            tile_enable_shadow:false,
-            grid_padding:0,
-            tile_width: 255,						//tile width
-            tile_height: 365,
-            grid_num_rows:10
-        });
-    });
-/***********END setting for licenses*************/
-
-/***********project pop-up*************/
-    $('.show-project-item').click(function(event){
-        var project_id = $(this).attr('data-project-id');
-        $('#overlay').fadeIn(400,
-            function(){
-                // console.log(service_id);
-                $('[data-popup-id='+project_id+']')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '45%'}, 200);
-            });
-        //Popup advice ClOSE
-        $('#overlay').click( function(){
-            $('[data-popup-id='+project_id+']')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function(){
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-        });
-        $(document).keydown( function(e) {
-            if (e.keyCode === 27) {
-                $('[data-popup-id='+project_id+']')
-                    .animate({opacity: 0, top: '45%'}, 200,
-                        function(){
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-                e.preventDefault();
-            }
-        });
-        event.preventDefault();
-    });
-/***********END project pop-up*************/
-
-/***********vacantions pop-up*************/
-    $('.btn__blue-in-vacantion').click(function(event){
-        var vacantions_id = $(this).parent().attr('id');
-        $('#overlay').fadeIn(400,
-            function(){
-                $('[data-id=' + vacantions_id + ']')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '45%'}, 200);
-            });
-        //Popup advice ClOSE
-        $('#overlay').click( function(){
-            $('[data-id=' + vacantions_id + ']')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function(){
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-        });
-        $(document).keydown( function(e) {
-            if (e.keyCode === 27) {
-                $('[data-id=' + vacantions_id + ']')
-                    .animate({opacity: 0, top: '45%'}, 200,
-                        function(){
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-                e.preventDefault();
-            }
-        });
-        event.preventDefault();
-    });
-/***********END vacantions pop-up*************/
-    
-/***********callback pop-up*************/
-    $('.callback').click(function(event){
-        $('#overlay').fadeIn(400,
-            function(){
-                $('#callback')
-                    .css('display', 'block')
-                    .animate({opacity: 1, top: '45%'}, 200);
-            });
-        //Popup advice ClOSE
-        $('#overlay').click( function(){
-            $('#callback')
-                .animate({opacity: 0, top: '45%'}, 200,
-                    function(){
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
-        });
-        $(document).keydown( function(e) {
-            if (e.keyCode === 27) {
-                $('#callback')
-                    .animate({opacity: 0, top: '45%'}, 200,
-                        function(){
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-                e.preventDefault();
-            }
-        });
-        event.preventDefault();
-    });
-/***********END callback pop-up*************/
-
-/***********project category tabs*************/
-    $('.project-btn-wrapper .btn').click( function (e) {
-        var category_id = $(this).attr('data-category-id');
-        $('.project-btn-wrapper .btn').removeClass('btn__yellow');
-        $(this).addClass('btn__yellow');
-        $('.project-category').fadeOut(500);
-        $('.project-content').find('[data-project-category='+category_id+']').fadeIn(1000);
-    });
-/***********END project category tabs*************/
-
-/***********services category tabs*************/
-    $('.services-menu_item').click( function (e) {
-        var services_id = $(this).attr('data-services-id');
-        $('.services-menu_item').removeClass('active');
-        $(this).addClass('active');
-        $('.services-page-item').fadeOut(500);
-        $('.content-section').find('[data-services-item-id='+services_id+']').fadeIn(1000);
-    });
-/***********END services category tabs*************/
-
 /**********scrollTo**************/
-    $(".vacantions-menu_item").click(function() {
-        var scrollId = $(this).attr('data-id');
+    $("#arrow-down").click(function() {
         $('html, body').animate({
-            scrollTop: $("#" + scrollId).offset().top
-        }, 2000);
+            scrollTop: $("#about" ).offset().top
+        }, 1500);
     });
 /**********END scrollTo**************/
 
-/**********Transition to a specified service**************/
-    var hashId = window.location.hash.slice(1);
-    if(hashId != 0){
-        $('.services-menu-wrap').find('[data-services-id=' + hashId +']').trigger('click');
-    }
-/**********END transition to a specified service**************/
+/**********static-page gallery**************/
+    $('.flex-gallery').each(function(){
+        $(this).unitegallery({
+            gallery_theme:"tiles",
+            tiles_type:"justified",
+            tile_border_color:"#F0F0F0",
+            tile_outline_color:"#8B8B8B",
+            tile_enable_shadow:true,
+            tile_shadow_color:"#8B8B8B",
+            tile_enable_icons: false,
+            tile_show_link_icon:false,
+            tile_enable_action:	false,			//enable tile action on click like lightbox
+            tile_as_link: true,				//act the tile as link, no lightbox will appear
+            tile_link_newpage: true,
+            theme_gallery_padding:20,
+            tiles_justified_space_between:20,
+            tiles_justified_row_height:350,
+//tile text panel options:
+            tile_enable_textpanel: true,		 	//enable textpanel
+            tile_textpanel_source: "title",		 	//title,desc,desc_title. source of the textpanel. desc_title - if description empty, put title
+            tile_textpanel_always_on: false,	 	//textpanel always visible
+            tile_textpanel_appear_type: "fade", 	//slide, fade - appear type of the textpanel on mouseover
+            tile_textpanel_position:"inside_top", //inside_bottom, inside_top, inside_center, top, bottom the position of the textpanel
+            tile_textpanel_offset: 0,			    //vertical offset of the textpanel
 
-    $('#menu-toggle-open').on('click', function () {
-        $('#nav-toggle').addClass('active');
-    });
-    $('#menu-toggle-close').on('click', function () {
-        $('#nav-toggle').removeClass('active');
-    });
-    /**********call-back popup**************/
-    $('#submit-send').on('click', function(event){
-        $('#submit-send').attr('disabled', true);
-        var data = new FormData($('form.callback')[0]);
-        var url = $( "input[name$='url']" ).val();
-        console.log(data);
-        $.ajax({
-            url: url,
-            method: 'POST',
-            processData: false,
-            contentType: false,
-            data: data,
-            dataType : "json",
-            success: function(data){
-                //console.info('Server response: ', data);
-                if(data.success){
-                    swal(trans['base.success'], "", "success");
-                    $(".callback").trigger("reset");
-                    $('#callback, #overlay').hide();
-                    $("#submit-send").attr('disabled', false);
+            tile_textpanel_padding_top:20,		 	//textpanel padding top
+            tile_textpanel_padding_bottom:20,	 	//textpanel padding bottom
+            tile_textpanel_padding_right: 11,	 	//cut some space for text from right
+            tile_textpanel_padding_left: 11,	 	//cut some space for text from left
+            tile_textpanel_bg_opacity: 0.9,		 	//textpanel background opacity
+            tile_textpanel_bg_color:"#ffffff",	 	//textpanel background color
+            tile_textpanel_bg_css:{},			 	//textpanel background css
 
-                }
-                else{
-                    swal(trans['base.error'], data.message, "error");
-                    $("#submit-send").attr('disabled', false);
-                }
-            },
-            error:function(data){
-                swal(trans['base.error']);
-                $("#submit-send").attr('disabled', false);
-                //  jQuery("#resume-form").trigger("reset");
-            }
+            tile_textpanel_title_color: "#000000",		 //textpanel title color. if null - take from css
+            tile_textpanel_title_font_family: "SolomonSansNormal",	 //textpanel title font family. if null - take from css
+            tile_textpanel_title_text_align: "center",	 //textpanel title text align. if null - take from css
+            tile_textpanel_title_font_size: 30,	 //textpanel title font size. if null - take from css
+            tile_textpanel_title_bold:null,			 //textpanel title bold. if null - take from css
+            tile_textpanel_css_title:{},			 //textpanel additional css of the title
 
+            tile_textpanel_desc_color: "#000000",			 //textpanel description font family. if null - take from css
+            tile_textpanel_desc_font_family: "SolomonSansNormal",	 //textpanel description font family. if null - take from css
+            tile_textpanel_desc_text_align:"center",	 //textpanel description text align. if null - take from css
+            tile_textpanel_desc_font_size: 20,		 //textpanel description font size. if null - take from css
+            tile_textpanel_desc_bold:null,			 //textpanel description bold. if null - take from css
+            tile_textpanel_css_description:{},		 //textpanel additional css of the description        });
         });
-        event.preventDefault();
     });
-    /**********END call-back popup**************/
-    /**********call-back**************/
-    $('#send').on('click', function(event){
-        $('#send').attr('disabled', true);
-        var data = new FormData($('form#contact-callback')[0]);
-        var url = $( "input[name$='url']" ).val();
-        console.log(data);
-        $.ajax({
-            url: url,
-            method: 'POST',
-            processData: false,
-            contentType: false,
-            data: data,
-            dataType : "json",
-            success: function(data){
-                //console.info('Server response: ', data);
-                if(data.success){
-                    swal(trans['base.success'], "", "success");
-                    $("#contact-callback").trigger("reset");
-                    $("#send").attr('disabled', false);
+/**********END static-page gallery**************/
 
-                }
-                else{
-                    swal(trans['base.error'], data.message, "error");
-                    $("#send").attr('disabled', false);
-                }
-            },
-            error:function(data){
-                swal(trans['base.error']);
-                $("#send").attr('disabled', false);
-                //  jQuery("#resume-form").trigger("reset");
-            }
-
-        });
-        event.preventDefault();
+    $('.services-content-link').on('click', function (e) {
+        var servicesId = $(this).attr('data-services-id');
+        $("#" + servicesId).toggleClass('active');
+        $(this).toggleClass('active');
+        e.preventDefault();
     });
-    /**********END call-back**************/
 
-    /**********Vacancies**************/
-    $('.submit-vacantion').on('click', function(event){
-        $('.submit-vacantion').attr('disabled', true);
-        var vacancy_id = $(this).attr('id');
-        console.log(vacancy_id);
-        var data = new FormData($('form#vacantion-form-' + vacancy_id)[0]);
-        console.log(data);
-        $.ajax({
-            url: '',
-            method: 'POST',
-            processData: false,
-            contentType: false,
-            data: data,
-            dataType : "json",
-            success: function(data){
-                //console.info('Server response: ', data);
-                if(data.success){
-                    swal(trans['base.success'], "", "success");
-                    $("#contact-callback").trigger("reset");
-                    $(".submit-vacantion").attr('disabled', false);
-
-                }
-                else{
-                    swal(trans['base.error'], data.message, "error");
-                    $(".submit-vacantion").attr('disabled', false);
-                }
-            },
-            error:function(data){
-                swal(trans['base.error']);
-                $(".submit-vacantion").attr('disabled', false);
-                //  jQuery("#resume-form").trigger("reset");
-            }
-
-        });
-        event.preventDefault();
-    });
-    /**********\Vacancies**************/
 });

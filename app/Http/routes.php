@@ -26,7 +26,7 @@ Route::get('/', 'Frontend\HomeController@index');//Перенаправленн�
 /*/Callback group route*/
 
 /*Backend group routes*/
-Route::group(['prefix'=>'adminIde8e', 'middleware' => ['auth', 'backend.init']], function(){
+Route::group(['prefix'=>'adminXah8s', 'middleware' => ['auth', 'backend.init']], function(){
 
 	//Routes for Articles (Backend)
 	Route::get('/',['uses' => 'Backend\AdminDashboardController@index','as' => 'admin_dashboard']);

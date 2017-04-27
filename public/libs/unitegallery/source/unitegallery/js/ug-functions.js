@@ -84,6 +84,8 @@ function UGFunctions(){
 		dataCache:{},
 		lastEventType:"",		//for validate touchstart click
 		lastEventTime:0,
+		lastTouchStartElement:null,
+		touchThreshold:700,
 		handle: null			//interval handle
 	};
 	
@@ -98,7 +100,7 @@ function UGFunctions(){
 	 * fullscreen ID - the ID of current fullscreen
 	 */
 	this.toFullscreen = function(element, fullscreenID) {
-				  
+		  	  
 		  if(element.requestFullscreen) {
 		    element.requestFullscreen();
 		  } else if(element.mozRequestFullScreen) {
@@ -1002,7 +1004,7 @@ function UGFunctions(){
 			obj.style += "left:"+obj.imageLeft+"px;";
 		}
 		
-		urlImage = urlImage.replace('"','\"');
+		urlImage = t.escapeDoubleSlash(urlImage);
 		
 		htmlImage += " style='"+obj.style+"'";
 		htmlImage += " src=\""+urlImage+"\"";
@@ -1109,6 +1111,7 @@ function UGFunctions(){
 			
 			objImage.css(objCss);			
 		}
+		
 		
 		return(obj);
 	}
@@ -1732,6 +1735,7 @@ function UGFunctions(){
 	
 	this.z_________GENERAL_FUNCTIONS_______ = function(){}
 	
+	
 	/**
 	 * check if current jquery version is more then minimal version
 	 * version can be "1.8.0" for example
@@ -2047,6 +2051,7 @@ function UGFunctions(){
 		element.off("touchstart");
 		element.off("touchend");
 		element.off("mousedown");
+		element.off("tap");
 	}
 	
 	/**
@@ -2070,6 +2075,64 @@ function UGFunctions(){
 		});
 		
 	}
+	
+	
+	/**
+	 * set button on tap
+	 */
+	this.setButtonOnTap = function(objButton, onClickFunction){
+		
+		//set the event
+		objButton.on("tap",onClickFunction);
+		
+		//set tap event trigger
+		if(t.isTouchDevice() == false){
+			
+			objButton.on("click", function(event){
+				var objElement = jQuery(this);
+				
+				if(t.validateClickTouchstartEvent(event.type) == false)
+					return(true);
+				
+				objElement.trigger("tap");
+			});
+			
+		}else{
+			
+			//set tap event
+			objButton.on("touchstart",function(event){
+				
+				var objElement = jQuery(this);
+				
+				objElement.addClass("ug-nohover");
+							
+				g_temp.lastTouchStartElement = jQuery(this);
+				g_temp.lastEventTime = jQuery.now();
+			});
+			
+			objButton.on("touchend", function(event){
+				var objElement = jQuery(this);
+				
+				//validate same element
+				if(objElement.is(g_temp.lastTouchStartElement) == false)
+					return(true);
+				
+				//validate time passed
+				if(!g_temp.lastEventTime)
+					return(true);
+				
+				var timePassed = jQuery.now() - g_temp.lastEventTime;
+				if(timePassed > g_temp.touchThreshold)
+					return(true);
+				
+				objElement.trigger("tap");
+			});
+			
+		}
+		
+		
+	}
+	
 	
 	/**
 	 * load javascript dynamically
@@ -2251,6 +2314,15 @@ function UGFunctions(){
 		var text = html.replace(/(<([^>]+)>)/ig,"");
 		
 		return(text);
+	}
+	
+	
+	/**
+	 * escape double slash
+	 */
+	this.escapeDoubleSlash = function(str){
+		
+		return str.replace('"','\"');
 	}
 	
 	

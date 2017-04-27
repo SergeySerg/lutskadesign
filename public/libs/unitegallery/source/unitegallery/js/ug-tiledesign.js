@@ -294,7 +294,7 @@ function UGTileDesign(){
 		var imageAlt = g_functions.stripTags(objItem.title);
 		imageAlt = g_functions.htmlentitles(imageAlt);
 		
-		html += "<img src='"+objItem.urlThumb+"' alt='"+imageAlt+"' class='"+classImage+"'>";
+		html += "<img src=\""+g_functions.escapeDoubleSlash(objItem.urlThumb)+"\" alt='"+imageAlt+"' class='"+classImage+"'>";
 
 		if(g_temp.hasImageContainer == true){
 			html += "</div>";
@@ -421,7 +421,7 @@ function UGTileDesign(){
 			var imageOverlayHtml = "<div class='ug-tile-image-overlay"+imageEffectClassAdd+"' >";
 			var imageEffectClass = " ug-"+g_options.tile_image_effect_type+"-effect";
 			
-			imageOverlayHtml += "<img src='"+objItem.urlThumb+"' alt='"+objItem.title+"' class='"+imageEffectClass + imageEffectClassAdd+"'>";
+			imageOverlayHtml += "<img src=\""+g_functions.escapeDoubleSlash(objItem.urlThumb)+"\" alt='"+objItem.title+"' class='"+imageEffectClass + imageEffectClassAdd+"'>";
 			imageOverlayHtml += "</div>";
 			
 			objThumbWrapper.append(imageOverlayHtml);
@@ -953,13 +953,15 @@ function UGTileDesign(){
 	/**
 	 * set tiles htmls
 	 */
-	this.setHtml = function(objParent){
+	this.setHtml = function(objParent, isAppend){
 		g_objParentWrapper = objParent;
 		
-		modifyOptionsBeforeRender();
+		if(isAppend !== true)
+			modifyOptionsBeforeRender();
 		
-		g_thumbs.setHtmlThumbs(objParent);
+		g_thumbs.setHtmlThumbs(objParent, isAppend);
 	}
+	
 	
 	
 	/**
@@ -1081,7 +1083,7 @@ function UGTileDesign(){
 	 * set tile over style
 	 */
 	function setOverStyle(data, objTile){
-		
+				
 		objTile = jQuery(objTile);
 				
 		if(g_options.tile_enable_image_effect)
@@ -1295,11 +1297,11 @@ function UGTileDesign(){
 		
 		g_objWrapper.on(g_temp.eventSizeChange, onSizeChange);
 		
-		g_objParentWrapper.delegate(".ug-tile .ug-button-play", "click", onZoomButtonClick);
+		g_objParentWrapper.on("click", ".ug-tile", onTileClick);
 		
-		g_objParentWrapper.delegate(".ug-tile", "click", onTileClick);
+		g_objParentWrapper.on("click", ".ug-tile .ug-button-play", onZoomButtonClick);
 		
-		g_objParentWrapper.delegate(".ug-tile .ug-icon-link", "click", onLinkButtonClick);
+		g_objParentWrapper.on("click", ".ug-tile .ug-icon-link", onLinkButtonClick);
 	}
 	
 	
@@ -1307,7 +1309,11 @@ function UGTileDesign(){
 	 * destroy the element events
 	 */
 	this.destroy = function(){
-				
+		
+		g_objParentWrapper.off("click", ".ug-tile");
+		g_objParentWrapper.off("click", ".ug-tile .ug-button-play");
+		g_objParentWrapper.off("click", ".ug-tile .ug-icon-link");
+		
 		jQuery(g_thumbs).off(g_thumbs.events.SETOVERSTYLE);
 		jQuery(g_thumbs).off(g_thumbs.events.SETNORMALSTYLE);
 		jQuery(g_thumbs).off(g_thumbs.events.PLACEIMAGE);
@@ -1410,7 +1416,7 @@ function UGTileDesign(){
 	/**
 	 * resize all tiles 
 	 */
-	this.resizeAllTiles = function(newWidth, resizeMode){
+	this.resizeAllTiles = function(newWidth, resizeMode, objTiles){
 		
 		modifyOptionsBeforeRender();
 		
@@ -1419,7 +1425,9 @@ function UGTileDesign(){
 		if(g_options.tile_size_by == t.sizeby.GLOBAL_RATIO)
 			newHeight = t.getTileHeightByWidth(newWidth);
 		
-		var objTiles = g_thumbs.getThumbs();
+		if(!objTiles)
+			var objTiles = g_thumbs.getThumbs();
+		
 		objTiles.each(function(index, objTile){
 			t.resizeTile(jQuery(objTile), newWidth, newHeight, resizeMode);
 		});
@@ -1482,6 +1490,7 @@ function UGTileDesign(){
 		objThumbs.css("pointer-events", "auto");
 	}
 	
+	
 	/**
 	 * set new options
 	 */
@@ -1518,20 +1527,24 @@ function UGTileDesign(){
 	/**
 	 * run the tile design
 	 */
-	this.run = function(){
+	this.run = function(newOnly){
 		
 		//resize all tiles
-		var objThumbs = g_thumbs.getThumbs();
+		var getMode = g_thumbs.type.GET_THUMBS_ALL;
+		if(newOnly === true)
+			getMode = g_thumbs.type.GET_THUMBS_NEW;
+		
+		var objThumbs = g_thumbs.getThumbs(getMode);
 		
 		if(g_options.tile_size_by == t.sizeby.GLOBAL_RATIO){
-			t.resizeAllTiles(g_options.tile_width, t.resizemode.WRAPPER_ONLY);
+			t.resizeAllTiles(g_options.tile_width, t.resizemode.WRAPPER_ONLY, objThumbs);
 		}
-			
+		
 		//hide original image if image effect active
 		if(g_options.tile_enable_image_effect == true && g_options.tile_image_effect_reverse == false)
 			objThumbs.children(".ug-thumb-image").fadeTo(0,0);
 		
-		g_thumbs.setHtmlProperties();
+		g_thumbs.setHtmlProperties(objThumbs);
 		
 		if(g_options.tile_visible_before_image == true){
 			

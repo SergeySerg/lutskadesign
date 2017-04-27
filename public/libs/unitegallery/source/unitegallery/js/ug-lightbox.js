@@ -132,7 +132,7 @@ function UGLightbox(){
 		
 		g_options = jQuery.extend(g_options, g_defaults);
 		g_options = jQuery.extend(g_options, customOptions);
-	
+		
 		g_temp.originalOptions = jQuery.extend({}, g_options);
 		
 		if(g_options.lightbox_type == "compact"){
@@ -582,7 +582,7 @@ function UGLightbox(){
 	 * position the arrows inside mode
 	 */
 	function positionArrowsInside(toShow, isAnimation){
-		
+				
 		if(g_temp.isArrowsInside == false)
 			return(false);
 		
@@ -649,6 +649,7 @@ function UGLightbox(){
 			g_functions.placeElement(g_objArrowLeft, leftArrowLeft, leftArrowTop);
 			g_functions.placeElement(g_objArrowRight, rightArrowLeft, rightArrowTop);
 		}
+		
 		
 		if(toShow == true)
 			showArrows(isAnimation);
@@ -1257,14 +1258,26 @@ function UGLightbox(){
 	/**
 	 * on gallery keypres, do operations
 	 */
-	function onKeyPress(data, key){
+	function onKeyPress(data, key, event){
+		
+		var isScrollKey = false;
 		
 		switch(key){
 			case 27:		//escape - close lightbox
 				if(g_temp.isOpened == true)
 					t.close("keypress");
 			break;
+			case 38:	//up and down arrows
+			case 40:
+			case 33:	//page up and down
+			case 34:
+				isScrollKey = true;
+			break;
 		}
+		
+		if(g_temp.isOpened == true && isScrollKey == true)
+			event.preventDefault();
+		
 		
 	}
 	
@@ -1558,7 +1571,12 @@ function UGLightbox(){
 		g_temp.isCompact = false;
 		modifyOptions();
 		
+		g_temp.isArrowsInside = false;
+		g_temp.isArrowsOnHoverMode = false;
+	
 		g_options = jQuery.extend({}, g_temp.originalOptions);
+		
+		g_options.lightbox_arrows_position = "sides";
 		
 		g_objSlider.setOptions(g_options);
 	}
@@ -1570,8 +1588,9 @@ function UGLightbox(){
 	this.putHtml = function(){
 		
 		//check if switch to wide mode
-		var isMobile = g_gallery.isMobileMode();
-		if(isMobile && g_temp.isCompact == true)
+		var isSmallWindow = g_gallery.isSmallWindow();
+		
+		if(isSmallWindow && g_temp.isCompact == true)
 			switchToWide();
 		
 		putLightboxHtml();

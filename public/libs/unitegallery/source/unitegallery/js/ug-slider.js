@@ -728,6 +728,7 @@ function UGSlider(){
 		
 		var objSize = g_functions.scaleImageExactSizeInParent(objImage, objItem.imageWidth, objItem.imageHeight, constantWidth, constantHeight, scaleMode);
 		
+		
 		return(objSize);
 	}
 
@@ -768,13 +769,14 @@ function UGSlider(){
 			
 			var objImageData = {};
 			
-			if(slideType != "image" && g_options.slider_video_constantsize == true)
+			if(slideType != "image" && g_options.slider_video_constantsize == true){
 				objImageData = scaleImageConstantSize(objImage, objItem);
-			else
+			}
+			else{
 				objImageData = g_functions.scaleImageFitParent(objImage, objItem.imageWidth, objItem.imageHeight, scaleMode, objPadding);
-
-			setImageDesign(objImage, slideType, objImageData);
+			}
 			
+			setImageDesign(objImage, slideType, objImageData);
 			g_objThis.trigger(t.events.AFTER_PUT_IMAGE, objSlide);
 			
 		}
@@ -792,6 +794,9 @@ function UGSlider(){
 				else
 					var objImageData = g_functions.getImageInsideParentData(objItemWrapper, objItem.imageWidth, objItem.imageHeight, scaleMode, objPadding);
 				
+				//set missing css width
+				objImage.css("width",objImageData.imageWidth+"px");
+						
 				setImageDesign(objImage, slideType, objImageData);
 				
 				g_objThis.trigger(t.events.AFTER_PUT_IMAGE, objSlide);
@@ -834,8 +839,9 @@ function UGSlider(){
 					
 					if(slideType != "image" && g_options.slider_video_constantsize == true)
 						scaleImageConstantSize(objImage, objItem);
-					else
+					else{
 						objImageData = g_functions.scaleImageFitParent(objImage, objItem.imageWidth, objItem.imageHeight, scaleMode, objPadding);
+					}
 					
 					objImage.fadeTo(0,1);
 					
@@ -1736,11 +1742,11 @@ function UGSlider(){
 		//image mouseenter / mouseleave event
 		
 		//set mouseover events on the images
-		g_objSlider.delegate(".ug-item-wrapper img","mouseenter",function(event){
+		g_objSlider.on("mouseenter",".ug-item-wrapper img",function(event){
 			g_objThis.trigger(t.events.IMAGE_MOUSEENTER);
 		});
-
-		g_objSlider.delegate(".ug-item-wrapper img","mouseleave",function(event){
+		
+		g_objSlider.on("mouseleave",".ug-item-wrapper img",function(event){
 			var isMouseOver = t.isMouseInsideSlideImage(event);
 			
 			if(isMouseOver == false)
@@ -1779,8 +1785,8 @@ function UGSlider(){
 		
 		g_objVideoPlayer.destroy();
 		
-		g_objSlider.undelegate(".ug-item-wrapper img","mouseenter");
-		g_objSlider.undelegate(".ug-item-wrapper img","mouseleave");
+		g_objSlider.off("mouseenter",".ug-item-wrapper img");
+		g_objSlider.off("mouseleave",".ug-item-wrapper img");
 	}
 	
 	
@@ -2372,11 +2378,13 @@ function UGSlider(){
 		
 		var objFitSize = g_functions.getImageInsideParentData(objParent, objItem.imageWidth, objItem.imageHeight, scaleMode, objPadding);
 		var objSize = g_functions.getElementSize(objImage);
+
+		var output = false;
 		
 		if(objFitSize.imageWidth == objSize.width)
-			return(true);
-		
-		return(false);
+			output = true;
+				
+		return(output);
 	}
 	
 	

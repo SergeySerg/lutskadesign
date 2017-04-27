@@ -71,9 +71,9 @@
     <div class="categoty-admin">
         <h3>Категории админки</h3>
         <ul class="list-admin">
-            <li><a href="/adminIde8e/articles/rooms">Комнаты</a></li>
-            <li><a href="/adminIde8e/articles/services">Услуги</a></li>
-            <li><a href="/adminIde8e/articles/events">События</a></li>
+            <li><a href="/adminXah8s/articles/rooms">Комнаты</a></li>
+            <li><a href="/adminXah8s/articles/services">Услуги</a></li>
+            <li><a href="/adminXah8s/articles/events">События</a></li>
         </ul>
     </div>-->
 
@@ -82,7 +82,8 @@
         <div class="container-fluid">
             <a href="{{ route('admin_dashboard') }}" class="brand">
                 {{--<i class="icon-leaf"></i>--}}
-               <img style="display: block;position: absolute;margin-top: -3px;" width="80px" src="{{ asset('/img/backend/logo.png') }}" alt="{{$_SERVER['HTTP_HOST']}}" />
+                lutskadesign.com.ua
+                {{--<img style="display: block;position: absolute;margin-top: -3px;" width="80px" src="{{ asset('/img/backend/logo.png') }}" alt="{{$_SERVER['HTTP_HOST']}}" />--}}
                 {{--<small style="margin-left: 40px;">
                     {{$_SERVER['HTTP_HOST']}}
                 </small>--}}
