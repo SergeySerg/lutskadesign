@@ -18,7 +18,8 @@
 
 	<link href="{{ asset('/libs/normalize.css/normalize.css') }}" rel="stylesheet" type="text/css" media="all">
 	<link href="{{ asset('/libs/bootstrap-grid-only/css/grid12.css') }}" rel="stylesheet" type="text/css" media="all" />
-	<link href="{{ asset('/libs/owl-carousel/owl.carousel.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('css/frontend/animate.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('libs/owl-carousel-2/assets/owl.carousel.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/owl-carousel/owl.theme.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
@@ -26,87 +27,52 @@
 	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{ asset('/css/plugins/sweetalert.css') }}">
 	{{-- /CSS --}}
-	{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>--}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
 <body>
-	@if(Request::is(App::getLocale()))
-	<header class="header" style="background-image: url('{{ asset('/img/frontend/bg-main.jpg') }}')">
-	@else
-	<header class="header header_other" style="background-image: url('{{ asset('/img/frontend/bg-top.jpg') }}')">
-	@endif
-		<div class="container header-wrap">
-			<div class="row">
-				<div class="col-md-3">
-					<a href="/{{ App::getLocale() }}"><img src="{{ asset('img/frontend/logo.png') }}" alt="Gidrobud" class="logo"></a>
-				</div>
-				<div class="col-md-9">
-					<div class="col-md-offset-2 col-md-3">
-						<div class="address"><b>{{ trans('base.address') }}:</b> <br>
-							{{ $texts->get('address') }}
-						</div>
-					</div>
-					<div class="col-md-offset-1 col-md-3">
-						<div class="phone">
-							<b>{{ trans('base.telephone') }}:</b><br>
-							{{ $texts->get('telephone_one') }} <br>
-							{{ $texts->get('telephone_second') }}
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="btn btn__yellow callback">{{ trans('base.callback') }}</div>
-					</div>
-					<div class="col-md-12">
-						<nav class="nav__blue">
-							<a href="/{{ App::getLocale() }}" class="nav_item @if(Request::is(App::getLocale())) active @endif">{{ trans('base.main') }}</a>
-							<a href="/{{ App::getLocale() }}/company" class="nav_item @if(Request::is('*/company')) active @endif">{{ trans('base.company') }}</a>
-							<a href="/{{ App::getLocale() }}/services" class="nav_item @if(Request::is('*/services')) active @endif">{{ trans('base.services') }}</a>
-							<a href="/{{ App::getLocale() }}/projects" class="nav_item @if(Request::is('*/projects')) active @endif">{{ trans('base.project') }}</a>
-							<a href="/{{ App::getLocale() }}/vacancies" class="nav_item @if(Request::is('*/vacancies')) active @endif">{{ trans('base.careers') }}</a>
-							<a href="/{{ App::getLocale() }}/licenses" class="nav_item @if(Request::is('*/licenses')) active @endif">{{ trans('base.license') }}</a>
-							<a href="/{{ App::getLocale() }}/contacts" class="nav_item @if(Request::is('*/contacts')) active @endif">{{ trans('base.contacts') }}</a>
-						</nav>
-					</div>
-				</div>
-			</div>
-			@if(Request::is(App::getLocale()))
-				<div class="row">
-					<div class="col-md-6">
-						@if( count($main) !== 0 AND $categories_data['main']->active == 1)
-							<h1 class="title section-title">{{ $main->getTranslate('title') }}</h1>
-							{{--<h2 class="title section-subtitle">{{ $main->getTranslate('title') }}</h2>--}}
-							<div class="section-description">
-								{!! $main->getTranslate('short_description') !!}
-							</div>
-							<a href="/{{ App::getLocale() }}/services"><div class="btn btn__blue">{{ trans('base.more') }}</div></a>
-						@endif
-					</div>
-				</div>
-			@endif
-		</div>
-	</header>
+
+<div class="sidebar-menu">
+	<a href="index.html"><img src="img/frontend/logo.png" alt="Яна Луцкая" class="logo"></a>
+	<ul class="menu">
+		<li class="menu-item"><a class="active" href="index.html">главная</a></li>
+		<li class="menu-item"><a href="about.html">яна луцкая</a></li>
+		<li class="menu-item"><a href="portfolio.html">портфолио</a></li>
+		<li class="menu-item"><a href="services.html">услуги</a></li>
+		<li class="menu-item"><a href="publication.html">публикации</a></li>
+		<li class="menu-item"><a href="calendar.html">календарь мероприятий</a></li>
+		<li class="menu-item"><a href="contact.html">контакты</a></li>
+	</ul>
+	<ul class="phones">
+		<li class="phones-item"><a href="tel:+380508094570">+380508094570</a></li>
+		<li class="phones-item"><a href="tel:+380966610363">+380966610363</a></li>
+	</ul>
+</div>
 
 @yield('content')
 
 <footer class="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3">
-				<div class="btn btn__yellow btn__footer callback">{{ trans('base.callback') }}</div>
-			</div>
-			<div class="col-md-6">
-				<nav class="footer_nav">
-					<a href="/{{ App::getLocale() }}" class="footer_nav-item @if(Request::is(App::getLocale())) active @endif">{{ trans('base.main') }}</a>
-					<a href="/{{ App::getLocale() }}/company" class="footer_nav-item @if(Request::is('*/company')) active @endif">{{ trans('base.company') }}</a>
-					<a href="/{{ App::getLocale() }}/services" class="footer_nav-item @if(Request::is('*/services')) active @endif">{{ trans('base.services') }}</a>
-					<a href="/{{ App::getLocale() }}/projects" class="footer_nav-item @if(Request::is('*/projects')) active @endif">{{ trans('base.project') }}</a>
-					<a href="/{{ App::getLocale() }}/vacancies" class="footer_nav-item @if(Request::is('*/vacancies')) active @endif">{{ trans('base.careers') }}</a>
-					<a href="/{{ App::getLocale() }}/licenses" class="footer_nav-item @if(Request::is('*/licenses')) active @endif">{{ trans('base.license') }}</a>
-					<a href="/{{ App::getLocale() }}/contacts" class="footer_nav-item @if(Request::is('*/contacts')) active @endif">{{ trans('base.contacts') }}</a>
-				</nav>
-			</div>
-			<div class="col-md-3">
-				<img class="footer_logo" src="{{ asset('/img/frontend/logo.png') }}" alt="Gidrobud">
+	<div class="wrapper">
+		<div class="news">
+			<ul class="news-list">
+				<li><a href="#">Время для себя: встреча с известным диетологом и тренером Линой Вертагус</a></li>
+				<li><a href="#">Время для себя: встреча с известным диетологом и тренером Линой Вертагус</a></li>
+				<li><a href="#">Время для себя: встреча с известным диетологом и тренером Линой Вертагус</a></li>
+			</ul>
+		</div>
+		<div class="contacts">
+			<ul>
+				<li><a href="#"><i class="fa fa-map-marker"></i>Киев, Ул. Болсуновская, 2</a></li>
+				<li><a href="mailto:mail@lutskaya.com"><i class="fa fa-envelope-o"></i>mail@lutskaya.com</a></li>
+				<li>© Яна Луцкая, 2017 г</li>
+			</ul>
+		</div>
+		<div class="center">
+			<div class="phone"><a href="tel:+380508094570">+380508094570</a></div>
+			<div class="social clearfix">
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-vk"></i></a>
+				<a href="#"><i class="fa fa-instagram"></i></a>
 			</div>
 		</div>
 	</div>
@@ -142,6 +108,7 @@
 	<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
 	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/js/frontend/masonry.pkgd.min.js') }}?ver={{ $version }}"></script>
 	<script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
 
 
