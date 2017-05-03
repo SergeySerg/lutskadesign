@@ -12,6 +12,13 @@ return [
 	| you want to customize your views to better match your application.
 	|
 	*/
+	'main' => 'Main',
+	'lutska' => 'яна луцкая',
+	'portfolio' => 'portfolio',
+	'services' => 'services',
+	'publication' => 'publication',
+	'calendar' => 'calendar',
+	'contact' => 'contact',
 
 	'about_us' => 'About us',
 	'prices' => 'Prices',

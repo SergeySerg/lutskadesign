@@ -2,14 +2,14 @@
   font-family: "FontAwesome";
   font-style: normal;
   font-weight: normal;
-  src: url("../fonts/FontAwesome/FontAwesome.eot?#iefix") format("embedded-opentype"), url("../fonts/FontAwesome/FontAwesome.woff2") format("woff2"), url("../fonts/FontAwesome/FontAwesome.woff") format("woff"), url("../fonts/FontAwesome/FontAwesome.ttf") format("truetype"), url("../fonts/FontAwesome/FontAwesome.svg#FontAwesome") format("svg"); }
+  src: url("../../fonts/frontend/FontAwesome/FontAwesome.eot?#iefix") format("embedded-opentype"), url("../../fonts/frontend/FontAwesome/FontAwesome.woff2") format("woff2"), url("../../fonts/frontend/FontAwesome/FontAwesome.woff") format("woff"), url("../../fonts/frontend/FontAwesome/FontAwesome.ttf") format("truetype"), url("../../fonts/frontend/FontAwesome/FontAwesome.svg#FontAwesome") format("svg"); }
 
 @font-face {
   font-family: "SolomonSansLight";
-  src: url("../fonts/SolomonSans/Solomon Sans Light.otf") format("opentype");
+  src: url("../../fonts/frontend/SolomonSans/Solomon Sans Light.otf") format("opentype");
 }
 
 @font-face {
   font-family: "SolomonSansNormal";
-  src: url("../fonts/SolomonSans/Solomon Sans Normal.otf") format("opentype");
+  src: url("../../fonts/frontend/SolomonSans/Solomon Sans Normal.otf") format("opentype");
 }

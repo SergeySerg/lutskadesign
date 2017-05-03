@@ -12,10 +12,19 @@ return [
 	| you want to customize your views to better match your application.
 	|
 	*/
+	'main' => 'Главная',
+	'lutska' => 'яна луцкая',
+	'portfolio' => 'портфолио',
+	'services' => 'услуги',
+	'publication' => 'публикации',
+	'calendar' => 'календарь мероприятий',
+	'contact' => 'контакты',
+
+
 	'address' => 'Адрес',
 	'telephone' => 'Телефон',
 	'callback' => 'заказать звонок',
-	'main' => 'Главная',
+
 	'company' => 'О компании',
 	'services' => 'Услуги',
 	'project' => 'Проекты',

@@ -35,17 +35,17 @@
 <div class="sidebar-menu">
 	<a href="index.html"><img src="img/frontend/logo.png" alt="Яна Луцкая" class="logo"></a>
 	<ul class="menu">
-		<li class="menu-item"><a class="active" href="index.html">главная</a></li>
-		<li class="menu-item"><a href="about.html">яна луцкая</a></li>
-		<li class="menu-item"><a href="portfolio.html">портфолио</a></li>
-		<li class="menu-item"><a href="services.html">услуги</a></li>
-		<li class="menu-item"><a href="publication.html">публикации</a></li>
-		<li class="menu-item"><a href="calendar.html">календарь мероприятий</a></li>
-		<li class="menu-item"><a href="contact.html">контакты</a></li>
+		<li class="menu-item"><a class="active" href="index.html">{{ trans('base.main') }}</a></li>
+		<li class="menu-item"><a href="about.html">{{ trans('base.lutska') }}</a></li>
+		<li class="menu-item"><a href="portfolio.html">{{ trans('base.portfolio') }}</a></li>
+		<li class="menu-item"><a href="services.html">{{ trans('base.services') }}</a></li>
+		<li class="menu-item"><a href="publication.html">{{ trans('base.publication') }}</a></li>
+		<li class="menu-item"><a href="calendar.html">{{ trans('base.calendar') }}</a></li>
+		<li class="menu-item"><a href="contact.html">{{ trans('base.contact') }}</a></li>
 	</ul>
 	<ul class="phones">
-		<li class="phones-item"><a href="tel:+380508094570">+380508094570</a></li>
-		<li class="phones-item"><a href="tel:+380966610363">+380966610363</a></li>
+		<li class="phones-item"><a href="tel:{{ $texts->get('telephone 1') }}">{{ $texts->get('telephone 1') }}</a></li>
+		<li class="phones-item"><a href="tel:{{ $texts->get('telephone 2') }}">{{ $texts->get('telephone 2') }}</a></li>
 	</ul>
 </div>
 
@@ -62,23 +62,23 @@
 		</div>
 		<div class="contacts">
 			<ul>
-				<li><a href="#"><i class="fa fa-map-marker"></i>Киев, Ул. Болсуновская, 2</a></li>
-				<li><a href="mailto:mail@lutskaya.com"><i class="fa fa-envelope-o"></i>mail@lutskaya.com</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i>{{ $texts->get('address') }}</a></li>
+				<li><a href="mailto:{{ $texts->get('email') }}"><i class="fa fa-envelope-o"></i>{{ $texts->get('email') }}</a></li>
 				<li>© Яна Луцкая, 2017 г</li>
 			</ul>
 		</div>
 		<div class="center">
-			<div class="phone"><a href="tel:+380508094570">+380508094570</a></div>
+			<div class="phone"><a href="{{ $texts->get('telephone 1') }}">{{ $texts->get('telephone 1') }}</a></div>
 			<div class="social clearfix">
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-vk"></i></a>
-				<a href="#"><i class="fa fa-instagram"></i></a>
+				@foreach($social as $social_item)
+					<a href="{{ $social_item->getAttributeTranslate('Ссылка') ? $social_item->getAttributeTranslate('Ссылка') : 'https://www.facebook.com/' }}">{!! $social_item->getAttributeTranslate('Иконка') !!}</a>
+				@endforeach
 			</div>
 		</div>
 	</div>
 </footer>
 
-<div id="callback" style="display: none;">
+{{--<div id="callback" style="display: none;">
 	<h1 class="title section-title section-title_service-form">{{ trans('base.callback_ring') }}</h1>
 	<form action="" class="callback" method="post">
 		<input type="text" name="name" placeholder="{{ trans('base.fio') }}">
@@ -87,7 +87,7 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 		<button type="submit" id="submit-send" class="btn btn__blue">{{ trans('base.send') }}</button>
 	</form>
-</div>
+</div>--}}
 
 <div id="overlay"></div><!-- Пoдлoжкa -->
 <input type="hidden" name="url" value="/{{ App::getLocale() }}/contact"/>
@@ -100,16 +100,20 @@
 </script>
 {{--Файл переводов--}}
 {{-- JS --}}
+
 	<script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
 	<script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
 {{--
 	<script src="{{ asset('/js/frontend/jquery-3.1.1.min.js') }}"></script>
 --}}
+	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
-	<script src="{{ asset('/libs/unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
-	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/libs/unitegallery/dist/themes/tiles/ug-theme-tiles.js') }}"></script>
 	<script src="{{ asset('/js/frontend/masonry.pkgd.min.js') }}?ver={{ $version }}"></script>
-	<script src="{{ asset('/libs/owl-carousel/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
+
+
+
 
 
 {{-- JS --}}
