@@ -1,14 +1,7 @@
 @extends('ws-app')
 
 @section('content')
-
     <div class="header-section">
-        <ul class="langs">
-            @foreach($langs as $lang)
-                <li class="lang-item"> <a @if($lang->lang == App::getLocale()) class="active" @endif href="{{str_replace(url(App::getLocale()), url($lang->lang), Request::url())}}">{{$lang->lang}}</a></li>
-            @endforeach
-        </ul>
-
         <div class="owl-carousel owl-theme">
             @foreach($slider as $slide)
                 <div class="slide" style="background-image: url('{{ asset($slide->getAttributeTranslate('Слайд')) }}');">
@@ -49,7 +42,7 @@
             </div>
         </div>
         <div class="more more_portfolio">
-            <a href="portfolio.html" class="more-portfolio-link">{{ trans('base.portfolio') }}<i class='fa fa-angle-right'></i></a>
+            <a href="/{{ App::getLocale() }}/portfolio" class="more-portfolio-link">{{ trans('base.portfolio') }}<i class='fa fa-angle-right'></i></a>
         </div>
     </div>
 

@@ -53,16 +53,9 @@ class ArticleController extends Controller {
 	 */
 	public function show($lang, $type, $id)
 	{
-		/*$static_page = Category::where('link', $type)
-		->first()
-		->articles()
-		->where('id', $id)
-		->activearticles() // use scopeActiveArticles in Article Model
+		$article = Article::where('id', $id)
 		->first();
-		view()->share('static_page', $static_page);*/
-
-		return view('frontend.' . $type);
-
+		return view('frontend.' . $type . '_item')->with(compact('article'));
 	}
 
 	/**

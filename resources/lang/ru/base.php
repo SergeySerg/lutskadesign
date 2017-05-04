@@ -13,12 +13,15 @@ return [
 	|
 	*/
 	'main' => 'Главная',
-	'lutska' => 'яна луцкая',
 	'portfolio' => 'портфолио',
 	'services' => 'услуги',
 	'publication' => 'публикации',
 	'calendar' => 'календарь мероприятий',
 	'contact' => 'контакты',
+	'base.no_item' => 'Нет записей в этой категории',
+	'services_desc' => 'Описание услуги',
+	'termines' => 'Время исполнения',
+	'content_services' => 'Содержание услуги',
 
 
 	'address' => 'Адрес',

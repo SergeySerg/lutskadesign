@@ -34,6 +34,9 @@ class FrontendInit {
 		App::setLocale($request->lang);
 		$texts = new Text();
 
+		//share type
+		$type = $request->type;
+//dd($type);
 		//get all Category
 		$categories = Category::all();
 		$categories_data = [];
@@ -57,6 +60,7 @@ class FrontendInit {
 		// Share to views global template variables
 		view()->share('langs', Lang::all());
 		view()->share('texts', $texts->init());
+		view()->share('type', $type);
 		view()->share('categories_data', $categories_data);
 		view()->share('version', config('app.version'));
 

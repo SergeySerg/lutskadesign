@@ -80,7 +80,7 @@ Route::group(['middleware' => 'frontend.init'], function(){
 	Route::post('/{lang}/contact', ['uses' => 'Frontend\ArticleController@contact','as' => 'contact']);//Обработчик Обратной связи
 	Route::post('/{lang}/vacancies', ['uses' => 'Frontend\ArticleController@vacancies','as' => 'vacancies']);//Обработчик Вакансій
 	Route::get('/{lang}/{type?}', ['uses' => 'Frontend\ArticleController@index', 'as' => 'article_index'])/*->where('type', 'main|company|services|projects|vacancies|licenses|contacts')*/;
-	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show'])->where('type', 'page|rate');
+	Route::get('/{lang}/{type}/{id}', ['uses' => 'Frontend\ArticleController@show', 'as' => 'article_show']);
 
 });
 /*Frontend group routes*/

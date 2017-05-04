@@ -13,12 +13,15 @@ return [
 	|
 	*/
 	'main' => 'Main',
-	'lutska' => 'яна луцкая',
 	'portfolio' => 'portfolio',
 	'services' => 'services',
 	'publication' => 'publication',
 	'calendar' => 'calendar',
 	'contact' => 'contact',
+	'base.no_item' => 'There are no items in this category',
+	'services_desc' => 'Description of service',
+	'termines' => 'Time of completion',
+	'content_services' => 'Content of the service',
 
 	'about_us' => 'About us',
 	'prices' => 'Prices',

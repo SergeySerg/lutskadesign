@@ -33,21 +33,26 @@
 <body>
 
 <div class="sidebar-menu">
-	<a href="index.html"><img src="img/frontend/logo.png" alt="Яна Луцкая" class="logo"></a>
+	<a href="/{{App::getLocale()}}"><img src="{{ asset('img/frontend/logo.png') }}" alt="{{ $myself->getTranslate('title') }}" class="logo"></a>
 	<ul class="menu">
-		<li class="menu-item"><a class="active" href="index.html">{{ trans('base.main') }}</a></li>
-		<li class="menu-item"><a href="about.html">{{ trans('base.lutska') }}</a></li>
-		<li class="menu-item"><a href="portfolio.html">{{ trans('base.portfolio') }}</a></li>
-		<li class="menu-item"><a href="services.html">{{ trans('base.services') }}</a></li>
-		<li class="menu-item"><a href="publication.html">{{ trans('base.publication') }}</a></li>
-		<li class="menu-item"><a href="calendar.html">{{ trans('base.calendar') }}</a></li>
-		<li class="menu-item"><a href="contact.html">{{ trans('base.contact') }}</a></li>
+		<li class="menu-item"><a @if(!$type) class="active" @endif href="/{{App::getLocale()}}">{{ trans('base.main') }}</a></li>
+		<li class="menu-item"><a @if($type == 'myself') class="active" @endif href="/{{ App::getLocale() }}/myself">{{ $myself->getTranslate('title') }}</a></li>
+		<li class="menu-item"><a @if($type == 'portfolio') class="active" @endif href="/{{ App::getLocale() }}/portfolio">{{ trans('base.portfolio') }}</a></li>
+		<li class="menu-item"><a @if($type == 'services') class="active" @endif href="/{{ App::getLocale() }}/services">{{ trans('base.services') }}</a></li>
+		<li class="menu-item"><a @if($type == 'publication') class="active" @endif href="/{{ App::getLocale() }}/publication">{{ trans('base.publication') }}</a></li>
+		<li class="menu-item"><a @if($type == 'calendar') class="active" @endif href="/{{ App::getLocale() }}/calendar">{{ trans('base.calendar') }}</a></li>
+		<li class="menu-item"><a @if($type == 'contact') class="active" @endif href="/{{ App::getLocale() }}/contact">{{ trans('base.contact') }}</a></li>
 	</ul>
 	<ul class="phones">
 		<li class="phones-item"><a href="tel:{{ $texts->get('telephone 1') }}">{{ $texts->get('telephone 1') }}</a></li>
 		<li class="phones-item"><a href="tel:{{ $texts->get('telephone 2') }}">{{ $texts->get('telephone 2') }}</a></li>
 	</ul>
 </div>
+<ul class="langs">
+	@foreach($langs as $lang)
+		<li class="lang-item"> <a @if($lang->lang == App::getLocale()) class="active" @endif href="{{str_replace(url(App::getLocale()), url($lang->lang), Request::url())}}">{{$lang->lang}}</a></li>
+	@endforeach
+</ul>
 
 @yield('content')
 
@@ -64,7 +69,7 @@
 			<ul>
 				<li><a href="#"><i class="fa fa-map-marker"></i>{{ $texts->get('address') }}</a></li>
 				<li><a href="mailto:{{ $texts->get('email') }}"><i class="fa fa-envelope-o"></i>{{ $texts->get('email') }}</a></li>
-				<li>© Яна Луцкая, 2017 г</li>
+				<li>©  {{ $myself->getTranslate('title') }}, 2017 г</li>
 			</ul>
 		</div>
 		<div class="center">

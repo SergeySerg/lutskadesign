@@ -375,18 +375,18 @@
                                                             <label class="control-label" for="form-field-2">{{ $key }}</label>
 
                                                             <div class="controls">
-                                                                <input type="text" name='attributes[{{ $key }}_{{$lang->lang}}]' value='@if(isset($admin_article)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }}@endif' id="form-field-{{ $key }}" placeholder="{{ $key }}" />
+                                                                <input type="text" name='attributes[{{ $key }}_{{$lang->lang}}]' value=" @if(isset($admin_article) && $admin_article->getAttributeTranslate($key, $lang->lang)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }} @endif" id="form-field-{{ $key }}" placeholder="{{ $key }}" />
                                                             </div>
                                                         </div>
                                                     @elseif ($attribute->type == 'textarea' )
                                                         <h4 class="header blue clearfix">{{ $key }}</h4>
                                                         <div class="control-group">
-                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12" id="form-field-{{ $key }}" placeholder="Текст">{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}</textarea>
+                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12" id="form-field-{{ $key }}" placeholder="Текст">@if(isset($admin_article) && $admin_article->getAttributeTranslate($key, $lang->lang)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }} @endif</textarea>
                                                         </div>
                                                     @elseif ($attribute->type == 'textarea-no-wysiwyg' )
                                                         <h4 class="header blue clearfix">{{ $key }}</h4>
                                                         <div class="control-group">
-                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12 no-wysiwyg" id="form-field-{{ $key }}" placeholder="Текст">{{ $admin_article->getAttributeTranslate($key, $lang->lang) }}</textarea>
+                                                            <textarea name='attributes[{{ $key }}_{{$lang->lang}}]' class="span12 no-wysiwyg" id="form-field-{{ $key }}" placeholder="Текст">@if(isset($admin_article) && $admin_article->getAttributeTranslate($key, $lang->lang)){{ $admin_article->getAttributeTranslate($key, $lang->lang) }} @endif</textarea>
                                                         </div>
                                                     @elseif ($attribute->type == 'files' )
                                                         <div class="control-group">
