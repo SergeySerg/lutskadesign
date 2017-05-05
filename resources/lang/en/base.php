@@ -22,6 +22,9 @@ return [
 	'services_desc' => 'Description of service',
 	'termines' => 'Time of completion',
 	'content_services' => 'Content of the service',
+	'all_public' => 'All publications',
+	'all_calendar' => 'Àll calendar',
+	'share' => 'Share',
 
 	'about_us' => 'About us',
 	'prices' => 'Prices',

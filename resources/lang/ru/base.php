@@ -22,6 +22,9 @@ return [
 	'services_desc' => 'Описание услуги',
 	'termines' => 'Время исполнения',
 	'content_services' => 'Содержание услуги',
+	'all_public' => 'Все публикации',
+	'all_calendar' => 'Весь календарь',
+	'share' => 'Рассказать друзьям:',
 
 
 	'address' => 'Адрес',

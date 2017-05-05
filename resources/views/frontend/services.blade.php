@@ -16,7 +16,7 @@
                     </div>
                     <a href="#" class="services-content-link" data-services-id="services-{{ $service->id }}">{{ trans('base.content_services') }}</a>
                 </div>
-                <div class="service-item-img" style="background-image: url('{{ asset($service->img) }}');">
+                <div class="service-item-img" style="background-image: url('{{ asset($service->getAttributeTranslate('Картинка')) }}');">
                     <div id="services-{{ $service->id }}" class="services-content">
                         {!! $service->getAttributeTranslate('Содержание услуги') ? $service->getAttributeTranslate('Содержание услуги') : '' !!}
                     </div>

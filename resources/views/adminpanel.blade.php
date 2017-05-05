@@ -330,7 +330,7 @@
 <!--js-->
 <script src="{{ asset('/js/backend/jquery.ui.touch-punch.min.js') }}"type="text/javascript"></script>
 <script src="{{ asset('/js/backend/jquery-ui-1.10.3.custom.min.js') }}"type="text/javascript"></script>
-<script src="{{ asset('/js/backend/global.js') }}"type="text/javascript"></script>
+
 <script src="{{ asset('/js/backend/jquery.slimscroll.min.js') }}"type="text/javascript"></script>
 <script src="{{ asset('/js/backend/ckeditor/ckeditor.js') }}"></script>
 
@@ -364,6 +364,7 @@
 
 <!--Sweetalert scripts-->
 <script src="{{ asset('/js/plugins/sweetalert.min.js') }}"></script>
+<script src="{{ asset('/js/backend/global.js') }}"type="text/javascript"></script>
 
 {{--JS new--}}
 <!--inline scripts related to this page-->

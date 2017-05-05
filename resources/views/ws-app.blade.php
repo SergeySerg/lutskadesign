@@ -60,9 +60,13 @@
 	<div class="wrapper">
 		<div class="news">
 			<ul class="news-list">
-				<li><a href="#">Время для себя: встреча с известным диетологом и тренером Линой Вертагус</a></li>
-				<li><a href="#">Время для себя: встреча с известным диетологом и тренером Линой Вертагус</a></li>
-				<li><a href="#">Время для себя: встреча с известным диетологом и тренером Линой Вертагус</a></li>
+				@if(count($calendar) > 1)
+					@foreach($calendar as $calendar_item)
+						<li><a href="/{{ App::getLocale() }}/calendar/{{ $calendar_item->id }}">{{ $calendar_item->getTranslate('title') }}</a></li>
+					@endforeach
+				@else
+					<li><a href="/{{ App::getLocale() }}/calendar/{{ $calendar->id }}">{{ $calendar->getTranslate('title') }}</a></li>
+				@endif
 			</ul>
 		</div>
 		<div class="contacts">

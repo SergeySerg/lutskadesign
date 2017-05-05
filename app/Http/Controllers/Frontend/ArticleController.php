@@ -53,8 +53,8 @@ class ArticleController extends Controller {
 	 */
 	public function show($lang, $type, $id)
 	{
-		$article = Article::where('id', $id)
-		->first();
+		$article = Article::where('id', $id)->first();
+
 		return view('frontend.' . $type . '_item')->with(compact('article'));
 	}
 

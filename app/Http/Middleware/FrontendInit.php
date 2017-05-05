@@ -36,7 +36,7 @@ class FrontendInit {
 
 		//share type
 		$type = $request->type;
-//dd($type);
+
 		//get all Category
 		$categories = Category::all();
 		$categories_data = [];
@@ -50,10 +50,12 @@ class FrontendInit {
 			// validate count for change method (get() or first()) if one item in array
 			if(count($category_item) == 1){
 				$category_item = $category_item->first();
+
 			}
 			//share Article
 			view()->share($category->link, $category_item);
 		}
+		//dd($category_item);
 		//dd($categories_data->article->get());
 		/*view()->share('static_page', $static_page);*/
 
