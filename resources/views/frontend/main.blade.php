@@ -3,13 +3,23 @@
 @section('content')
     <div class="header-section">
         <div class="owl-carousel owl-theme">
-            @foreach($slider as $slide)
-                <div class="slide" style="background-image: url('{{ asset($slide->getAttributeTranslate('Слайд')) }}');">
-                    <div class="slide-title_wrap">
-                        <h2 class="slide-title">{{ $slide->getTranslate('title') }}</h2>
+            @if( count($slider) !== 0 AND $categories_data['slider']->active == 1)
+                @if(count($slider) > 1)
+                    @foreach($slider as $slide)
+                        <div class="slide" style="background-image: url('{{ asset($slide->getAttributeTranslate('Слайд')) }}');">
+                            <div class="slide-title_wrap">
+                                <h2 class="slide-title">{{ $slide->getTranslate('title') }}</h2>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="slide" style="background-image: url('{{ asset($slider->getAttributeTranslate('Слайд')) }}');">
+                        <div class="slide-title_wrap">
+                            <h2 class="slide-title">{{ $slider->getTranslate('title') }}</h2>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endif
+            @endif
         </div>
         <div id="arrow-down" data-scroll-to="about"><i class='fa fa-angle-down'></i></div>
     </div>
