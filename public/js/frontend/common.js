@@ -17,7 +17,7 @@ $(function(){
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
         items:1,
-        loop: true,
+        loop: false,
         autoplay: true,
         smartSpeed: 1000,
         nav: true,
