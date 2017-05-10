@@ -18,7 +18,7 @@ return [
 	'publication' => 'publication',
 	'calendar' => 'calendar',
 	'contact' => 'contact',
-	'base.no_item' => 'There are no items in this category',
+	'no_item' => 'There are no items in this category',
 	'services_desc' => 'Description of service',
 	'termines' => 'Time of completion',
 	'content_services' => 'Content of the service',

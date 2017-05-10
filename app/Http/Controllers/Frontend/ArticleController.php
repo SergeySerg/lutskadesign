@@ -38,7 +38,7 @@ class ArticleController extends Controller {
 			->activearticles() // use scopeActiveArticles in Article Model
 			->get();
 		dd($static_page);*/
-		//dd($type);
+		//dd($myself);
 		//dump($news);
 		//dd($video->category()->first()->active);
 		return view('frontend.'. $type);

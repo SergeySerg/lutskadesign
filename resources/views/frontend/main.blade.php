@@ -26,29 +26,39 @@
 
     <div id="about" class="about-section" style="background-image: url('{{ asset($myself->getAttributeTranslate('Фото')) }}');">
         <div class="about-img-bg"></div>
-        <div class="description-wrap">
-            <h2 class="about-title"> {{ $myself->getTranslate('title') }}</h2>
-            <div class="subtitle"> {!! $myself->getTranslate('short_description') !!}</div>
-            <hr class="hr-1">
-            <div class="description">
-                {!! $myself->getTranslate('description') !!}
+            <div class="description-wrap">
+                <h2 class="about-title"> {{ $myself->getTranslate('title') }}</h2>
+                    <div class="subtitle"> {!! $myself->getTranslate('short_description') !!}</div>
+                    <hr class="hr-1">
+                    <div class="description">
+                        {!! $myself->getTranslate('description') !!}
+                    </div>
+                    <a href="about.html">
+                        <i class='fa fa-angle-right'></i>
+                    </a>
             </div>
-            <a href="about.html">
-                <i class='fa fa-angle-right'></i>
-            </a>
-        </div>
     </div>
 
     <div class="portfolio-section">
         <div class="static-gallery">
             <div id="page-gallery-1" class="flex-gallery" style="display:none;">
-                @foreach($portfolio as $portfolio_item)
-                    <a href="portfolio-item.html">
-                        <img alt="{{ $portfolio_item->getTranslate('title') }}" src="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
-                             data-image="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
-                             data-description="2017">
-                    </a>
-                @endforeach
+                @if( count($portfolio) !== 0 AND $categories_data['portfolio']->active == 1)
+                    @if(count($portfolio) > 1)
+                        @foreach($portfolio as $portfolio_item)
+                                <a href="portfolio-item.html">
+                                    <img alt="{{ $portfolio_item->getTranslate('title') }}" src="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
+                                         data-image="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
+                                         data-description="2017">
+                                </a>
+                        @endforeach
+                    @else
+                        <a href="portfolio-item.html">
+                            <img alt="{{ $portfolio->getTranslate('title') }}" src="{{ $portfolio->getAttributeTranslate('Картинка') }}"
+                                 data-image="{{ $portfolio->getAttributeTranslate('Картинка') }}"
+                                 data-description="2017">
+                        </a>
+                    @endif
+                @endif
             </div>
         </div>
         <div class="more more_portfolio">
