@@ -48,6 +48,7 @@
 		<li class="phones-item"><a href="tel:{{ $texts->get('telephone 2') }}">{{ $texts->get('telephone 2') }}</a></li>
 	</ul>
 </div>
+<div class="button-menu"><div class="menu-i icon"></div>MENU</div>
 <ul class="langs">
 	@foreach($langs as $lang)
 		<li class="lang-item"> <a @if($lang->lang == App::getLocale()) class="active" @endif href="{{str_replace(url(App::getLocale()), url($lang->lang), Request::url())}}">{{$lang->lang}}</a></li>
@@ -71,9 +72,9 @@
 		</div>
 		<div class="contacts">
 			<ul>
-				<li><a href="#"><i class="fa fa-map-marker"></i>{{ $texts->get('address') }}</a></li>
+				<li><a href="/{{ App::getLocale() }}/contact/"><i class="fa fa-map-marker"></i>{{ $texts->get('address') }}</a></li>
 				<li><a href="mailto:{{ $texts->get('email') }}"><i class="fa fa-envelope-o"></i>{{ $texts->get('email') }}</a></li>
-				<li>©  {{ $myself->getTranslate('title') }}, 2017 г</li>
+				<li>©  {{ $myself->getTranslate('title') }}, 2017</li>
 			</ul>
 		</div>
 		<div class="center">

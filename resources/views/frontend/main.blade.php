@@ -23,7 +23,7 @@
             <div class="description">
                 {!! $myself->getTranslate('description') !!}
             </div>
-            <a href="about.html">
+            <a href="/{{ App::getLocale() }}/myself">
                 <i class='fa fa-angle-right'></i>
             </a>
         </div>

@@ -23,7 +23,7 @@ return [
 	'termines' => 'Time of completion',
 	'content_services' => 'Content of the service',
 	'all_public' => 'All publications',
-	'all_calendar' => 'Àll calendar',
+	'all_calendar' => 'All calendar',
 	'share' => 'Share',
 
 	'about_us' => 'About us',

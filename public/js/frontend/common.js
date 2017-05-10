@@ -1,7 +1,12 @@
 $(function(){
 
 /***********height screen*************/
+var secHeight = $( window ).height() - 105;
+/*
+    alert($('footer').height());
+*/
     $('.slide,.header-section, .portfolio-item-main').css({height : $( window ).height()});
+    $('.section-publication, .contact-section, .calendar-section, .page-about-section, .section-portfolio').css({'min-height' : secHeight});
 /***********END height screen*************/
     
 /**********open-close menu**************/

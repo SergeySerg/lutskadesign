@@ -7,7 +7,6 @@
                 <div class="service-item clearfix">
                 <div class="service-item-description-wrap">
                     <h2 class="service-item-name">{{ $service->getTranslate('title') }}</h2>
-                    <hr>
                     <div class="service-item-description">
                         <h3>{{ trans('base.services_desc') }}</h3>
                             {!! $service->getAttributeTranslate('Описание услуги') ? $service->getAttributeTranslate('Описание услуги') : '' !!}
