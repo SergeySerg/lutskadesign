@@ -22,7 +22,7 @@
                         {{ trans('base.no_item') }}
                     </div>
                 @endforelse
-            @else
+            @elseif(count($portfolio) == 1)
                 <div class="portfolio-item">
                     <a href="/{{ App::getLocale() }}/portfolio/{{ $portfolio->id }}">
                         <div class="portfolio-item-img" style="background-image: url('{{ asset($portfolio->getAttributeTranslate('Картинка')) }}');">
@@ -35,6 +35,10 @@
                             </div>
                         </div>
                     </a>
+                </div>
+            @else
+                <div class="portfolio-item">
+                    {{ trans('base.no_item') }}
                 </div>
             @endif
         </div>
