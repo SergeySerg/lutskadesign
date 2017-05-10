@@ -36,7 +36,7 @@ class AuthController extends Controller {
 	}
 	//Переопределение метода для возможности регистрации одного пользователя
     public function getRegister(){
-		return redirect('auth/login');
+		return redirect('adminXah8s');
 	}
 
 }
