@@ -140,7 +140,7 @@
 		</div>
 
 		<div class="toolbar center">
-			<a href="{{ url('/auth/login') }}"  class="back-to-login-link">
+			<a href="{{ url('/adminXah8s') }}"  class="back-to-login-link">
 				<i class="icon-arrow-left"></i>
 				{{ trans('passwords.back_login') }}
 			</a>
