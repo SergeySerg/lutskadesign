@@ -33,7 +33,7 @@
         <div class="static-gallery">
             <div id="page-gallery-1" class="flex-gallery" style="display:none;">
                 @foreach($portfolio as $portfolio_item)
-                    <a href="portfolio-item.html">
+                    <a href="/{{ App::getLocale() }}/portfolio/{{ $portfolio_item->id }}">
                         <img alt="{{ $portfolio_item->getTranslate('title') }}" src="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
                              data-image="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
                              data-description="2017">
