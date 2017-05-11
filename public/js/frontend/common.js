@@ -1,10 +1,7 @@
 $(function(){
 
 /***********height screen*************/
-var secHeight = $( window ).height() - 105;
-/*
-    alert($('footer').height());
-*/
+    var secHeight = $( window ).height() - 105;
     $('.slide,.header-section, .portfolio-item-main').css({height : $( window ).height()});
     $('.section-publication, .contact-section, .calendar-section, .page-about-section, .section-portfolio').css({'min-height' : secHeight});
 /***********END height screen*************/
@@ -128,6 +125,15 @@ var secHeight = $( window ).height() - 105;
         itemSelector: '.publication-item'
     });
 
+/*
+    $('.section-portfolio-item' ).masonry({
+        columnWidth: '.item',
+        itemSelector: '.item'
+    });
+*/
+
+    $( '.swipebox' ).swipebox();
+    
 /**********hide lang**************/
     $(window).scroll(function(){                              // отслеживаем событие
         if ( $(window).scrollTop() >= 50 ){                   // ставим условие

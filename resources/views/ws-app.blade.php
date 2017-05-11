@@ -24,6 +24,7 @@
 	<link href="{{ asset('/css/frontend/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/libs/unitegallery/dist/css/unite-gallery.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{ asset('/css/frontend/swipebox.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{ asset('/css/frontend/main.css') }}?ver={{ $version }}" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{ asset('/css/plugins/sweetalert.css') }}">
 	{{-- /CSS --}}
@@ -119,7 +120,8 @@
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/themes/tiles/ug-theme-tiles.js') }}"></script>
-	<script src="{{ asset('/js/frontend/masonry.pkgd.min.js') }}?ver={{ $version }}"></script>
+	<script src="{{ asset('/js/frontend/masonry.pkgd.min.js') }}"></script>
+	<script src="{{ asset('/js/frontend/jquery.swipebox.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>
 
 
