@@ -4,6 +4,10 @@ $(function(){
     var secHeight = $( window ).height() - 105;
     $('.slide,.header-section, .portfolio-item-main').css({height : $( window ).height()});
     $('.section-publication, .contact-section, .calendar-section, .page-about-section, .section-portfolio').css({'min-height' : secHeight});
+
+    $('.service-item-img').each(function () {
+        $(this).css({height : $(this).parent().css('height')});
+    });
 /***********END height screen*************/
     
 /**********open-close menu**************/
@@ -117,6 +121,7 @@ $(function(){
     });
 /**********END show services list**************/
 
+/**********Aligh vertical **************/
     $('.calendar-section-wrap' ).masonry({
         itemSelector: '.calendar-item'
     });
@@ -124,13 +129,7 @@ $(function(){
     $('.section-publication' ).masonry({
         itemSelector: '.publication-item'
     });
-
-/*
-    $('.section-portfolio-item' ).masonry({
-        columnWidth: '.item',
-        itemSelector: '.item'
-    });
-*/
+/**********END aligh vertical **************/
 
     $( '.swipebox' ).swipebox();
     
