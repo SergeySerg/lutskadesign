@@ -34,6 +34,5 @@
                 <a href="/{{ App::getLocale() }}/calendar" class="more-portfolio-link">{{ trans('base.all_calendar') }}<i class='fa fa-angle-right'></i></a>
             </div>
         </div>
-
     </div>
 @endsection

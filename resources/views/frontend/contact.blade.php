@@ -1,9 +1,10 @@
 @extends('ws-app')
 
 @section('content')
-    <div class="contact-section">
-        <div class="first-img" style="background-image: url('{{ asset('img/frontend/contact.jpg') }}');"></div>
-        <div class="second-img" style="background-image: url('{{ asset('img/frontend/logo.png') }}');"></div>
+    <div class="contact-section clearfix">
+        <div class="first-img" style="background-image: url('{{ asset('img/frontend/contact_1.jpg') }}');"></div>
+        <div class="second-img" style="background-image: url('{{ asset('img/frontend/contact_2.jpg') }}');"></div>
+{{--
         <div class="contact-info">
             <h4>{{ $texts->get('name_studio') }}</h4>
             <h3>{{ $texts->get('owner') }}</h3>
@@ -18,5 +19,6 @@
                 {{ $texts->get('email') }}
             </div>
         </div>
+--}}
     </div>
 @endsection

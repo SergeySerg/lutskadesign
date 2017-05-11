@@ -27,11 +27,10 @@
                     </div>
                 </div>
             @endif
-
-
         </div>
         <div class="more">
             <a href="/{{ App::getLocale() }}/portfolio" class="more-portfolio-link">{{ trans('base.portfolio') }}<i class='fa fa-angle-right'></i></a>
         </div>
     </div>
+
 @endsection

@@ -1,6 +1,7 @@
 @extends('ws-app')
 
 @section('content')
+    
     <div class="header-section">
         <div class="owl-carousel owl-theme">
             @if( count($slider) !== 0 AND $categories_data['slider']->active == 1)
@@ -17,26 +18,30 @@
                         <div class="slide-title_wrap">
                             <h2 class="slide-title">{{ $slider->getTranslate('title') }}</h2>
                         </div>
-
                     </div>
                 @endif
             @endif
-            <div id="arrow-down" data-scroll-to="about"><i class='fa fa-angle-down'></i></div>
+            </div>
+        <div id="arrow-down" data-scroll-to="about"><i class='fa fa-angle-down'></i></div>
     </div>
 
     <div id="about" class="about-section" style="background-image: url('{{ asset($myself->getAttributeTranslate('Фото')) }}');">
         <div class="about-img-bg"></div>
             <div class="description-wrap">
                 <h2 class="about-title"> {{ $myself->getTranslate('title') }}</h2>
-                    <div class="subtitle"> {!! $myself->getTranslate('short_description') !!}</div>
-                    <hr class="hr-1">
-                    <div class="description">
-                        {!! $myself->getTranslate('description') !!}
-                    </div>
-                    <a href="about.html">
-                        <i class='fa fa-angle-right'></i>
-                    </a>
+                <div class="subtitle"> {!! $myself->getTranslate('short_description') !!}</div>
+                <hr class="hr-1">
+                <div class="description">
+                    {!! $myself->getTranslate('description') !!}
+                </div>
+                <a href="/{{ App::getLocale() }}/myself">
+                    <i class='fa fa-angle-right'></i>
+                </a>
             </div>
+            <a href="/{{ App::getLocale() }}/myself">
+                <i class='fa fa-angle-right'></i>
+            </a>
+        </div>
     </div>
 
     <div class="portfolio-section">
@@ -45,11 +50,11 @@
                 @if( count($portfolio) !== 0 AND $categories_data['portfolio']->active == 1)
                     @if(count($portfolio) > 1)
                         @foreach($portfolio as $portfolio_item)
-                                <a href="portfolio-item.html">
-                                    <img alt="{{ $portfolio_item->getTranslate('title') }}" src="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
-                                         data-image="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
-                                         data-description="2017">
-                                </a>
+                            <a href="/{{ App::getLocale() }}/portfolio/{{ $portfolio_item->id }}">
+                                <img alt="{{ $portfolio_item->getTranslate('title') }}" src="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
+                                     data-image="{{ $portfolio_item->getAttributeTranslate('Картинка') }}"
+                                     data-description="2017">
+                            </a>
                         @endforeach
                     @else
                         <a href="portfolio-item.html">
@@ -65,6 +70,5 @@
             <a href="/{{ App::getLocale() }}/portfolio" class="more-portfolio-link">{{ trans('base.portfolio') }}<i class='fa fa-angle-right'></i></a>
         </div>
     </div>
-
 
 @endsection
