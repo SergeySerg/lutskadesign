@@ -14,6 +14,7 @@ return [
 	*/
 	'main' => 'Главная',
 	'portfolio' => 'портфолио',
+	'all_project' => 'все проекты',
 	'services' => 'услуги',
 	'publication' => 'публикации',
 	'calendar' => 'календарь мероприятий',

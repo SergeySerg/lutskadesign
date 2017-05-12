@@ -7,13 +7,19 @@
             <p>{{ $article->getAttributeTranslate('Месторасположение') ? $article->getAttributeTranslate('Месторасположение') : '' }}, {{ $article->getAttributeTranslate('Год') ? $article->getAttributeTranslate('Год') : '' }}</p>
         </div>
         <div id="arrow-down" data-scroll-to="section-portfolio-item"><i class='fa fa-angle-down'></i></div>
+{{--
         <div class="share-btn">
             <i class="fa fa-share-alt"></i>
         </div>
+--}}
     </div>
-    <div id="section-portfolio-item" class="section-portfolio-item clearfix">
-        <div class="portfolio-item-wrap">
+    <div id="section-portfolio-item" class="section-portfolio-item">
+        <div class="portfolio-item-wrap  clearfix">
             {!! $article->getTranslate('description') !!}
         </div>
+        <div class="more">
+            <a href="/{{ App::getLocale() }}/portfolio" class="more-portfolio-link">{{ trans('base.all_project') }}<i class='fa fa-angle-right'></i></a>
+        </div>
     </div>
+
 @endsection

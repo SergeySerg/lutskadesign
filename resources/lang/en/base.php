@@ -14,6 +14,7 @@ return [
 	*/
 	'main' => 'Main',
 	'portfolio' => 'portfolio',
+	'all_project' => 'all project',
 	'services' => 'services',
 	'publication' => 'publication',
 	'calendar' => 'calendar',
@@ -25,7 +26,6 @@ return [
 	'all_public' => 'All publications',
 	'all_calendar' => 'All calendar',
 	'share' => 'Share',
-
 	'about_us' => 'About us',
 	'prices' => 'Prices',
 	'download' => 'Download',

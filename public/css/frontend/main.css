@@ -727,39 +727,21 @@ hr {
   padding: 45px 0;
   border-top: 2px solid; }
 
+#share42 a:hover{
+  background-position-y: -32px !important; }
+
+.calendar-item-page-img .share42init{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;}
+
 span.text {
+  float: left;
   margin-right: 13px;
   font-size: 18px;
   font-style: normal;
   line-height: 34px;
   vertical-align: top; }
-
-.social-share a {
-  display: inline-block;
-  width: 34px;
-  height: 34px;
-  margin: 0 4px 0 3px;
-  border: 1px solid #aaa;
-  color: #aaaaaa;
-  text-align: center;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease; }
-  .social-share a .fa {
-    padding-top: 4px;
-    font-size: 22px; }
-  .social-share a:hover {
-    border: 1px solid #e77983;
-    color: #e77983;
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease; }
-
-.social-share-on-img {
-  position: absolute;
-  right: 10px;
-  bottom: 10px; }
-  .social-share-on-img a {
-    border: 1px solid #fff;
-    color: #fff; }
 
 .more-calendar {
   background-color: #f4f4f4; }
