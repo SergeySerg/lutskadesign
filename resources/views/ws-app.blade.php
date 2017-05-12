@@ -42,7 +42,7 @@
 <div class="sidebar-menu">
 	<a href="/{{App::getLocale()}}"><img src="{{ asset('img/frontend/logo.png') }}" alt="{{ $myself->getTranslate('title') }}" class="logo"></a>
 	<ul class="menu">
-		<li class="menu-item"><a @if(!$type) class="active" @endif href="/{{App::getLocale()}}">{{ trans('base.main') }}</a></li>
+		<li class="menu-item"><a @if($type == 'main') class="active" @endif href="/{{App::getLocale()}}">{{ trans('base.main') }}</a></li>
 		<li class="menu-item"><a @if($type == 'myself') class="active" @endif href="/{{ App::getLocale() }}/myself">{{ $myself->getTranslate('title') }}</a></li>
 		<li class="menu-item"><a @if($type == 'portfolio') class="active" @endif href="/{{ App::getLocale() }}/portfolio">{{ trans('base.portfolio') }}</a></li>
 		<li class="menu-item"><a @if($type == 'services') class="active" @endif href="/{{ App::getLocale() }}/services">{{ trans('base.services') }}</a></li>
