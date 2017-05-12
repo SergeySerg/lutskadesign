@@ -147,11 +147,12 @@ class AdminCategoriesController extends Controller {
 
 	public function edit($type = null)
 	{
+		//dd(12);
 		$langs = Lang::all();
 		$admin_category = Category::where("link","=","$type")->first();
 
 		//Var article_parent
-		$category_parent = $admin_category['parent_id'];
+		//$category_parent = $admin_category['parent_id'];
 
 		//create folder with id
 		Storage::makeDirectory('upload/categories/' . $admin_category->id, '0777', true, true);
@@ -161,8 +162,9 @@ class AdminCategoriesController extends Controller {
 
 		//Decode attributes from articles DB
 		$attributes_fields = $fields->attributes;
+		//dd($admin_category);
 		return view('backend.categories.edit')
-			->with(compact('langs','admin_category','type','attributes_fields','category_parent'))
+			->with(compact('langs','admin_category','type','attributes_fields'))
 			->with(['action_method' => 'put']);
 
 		/*return view('backend.categories.edit', [
@@ -181,6 +183,7 @@ class AdminCategoriesController extends Controller {
 			'attributes_fields' => $attributes_fields,
 			'article_parent' => $article_parent
 		]);*/
+
 	}
 
 	/* Update the Category in storage.(@param  int  $id,@return Response*/

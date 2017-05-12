@@ -37,6 +37,9 @@ class FrontendInit {
 		//share type
 		$type = $request->type;
 
+		if(is_null($request->type)){
+			$type = 'main';
+		}
 		//get all Category
 		$categories = Category::all();
 		$categories_data = [];
@@ -55,6 +58,7 @@ class FrontendInit {
 			//share Article
 			view()->share($category->link, $category_item);
 		}
+		//dd($type);
 		//dd($categories_data);
 		//dd($categories_data->article->get());
 		/*view()->share('static_page', $static_page);*/

@@ -29,11 +29,11 @@ class AdminArticlesController extends Controller {
 
 
 		$admin_category = Category::where("link","=",$type)->first();
-		$admin_category_parent = $admin_category->category_parent()->first();
-		$admin_category_children = $admin_category->category_children()->get();
+		//$admin_category_parent = $admin_category->category_parent()->first();
+		//$admin_category_children = $admin_category->category_children()->get();
 		/*dd($admin_category_parent);*/
 		$admin_articles = $admin_category->articles;
-		return view('backend.articles.list')->with(compact('admin_category','admin_articles','type','admin_category_children','admin_category_parent'));
+		return view('backend.articles.list')->with(compact('admin_category','admin_articles','type'));
 
 	}
 
