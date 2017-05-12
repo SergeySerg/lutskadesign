@@ -57,7 +57,7 @@
                             </a>
                         @endforeach
                     @else
-                        <a href="portfolio-item.html">
+                        <a href="/{{ App::getLocale() }}/portfolio/{{ $portfolio->id }}">
                             <img alt="{{ $portfolio->getTranslate('title') }}" src="{{ $portfolio->getAttributeTranslate('Картинка') }}"
                                  data-image="{{ $portfolio->getAttributeTranslate('Картинка') }}"
                                  data-description="2017">

@@ -749,13 +749,13 @@ span.text {
 .first-img {
   display: inline-block;
   height: 700px;
-  width: 50%;
+  width: 49.8%;
   background-size: cover;
   background-repeat: no-repeat;}
 
 .second-img {
   display: inline-block;
-  width: 50%;
+  width: 49.8%;
   height: 700px;
   background-size: cover;
   background-position: left top;
@@ -842,6 +842,7 @@ span.text {
   display: table-cell;
   vertical-align: middle;
   max-height: 300px;
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;}
 .item-img{
