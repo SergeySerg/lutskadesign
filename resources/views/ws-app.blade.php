@@ -88,7 +88,7 @@
 			<div class="phone"><a href="{{ $texts->get('telephone 1') }}">{{ $texts->get('telephone 1') }}</a></div>
 			<div class="social clearfix">
 				@foreach($social as $social_item)
-					<a href="{{ $social_item->getAttributeTranslate('Ссылка') ? $social_item->getAttributeTranslate('Ссылка') : 'https://www.facebook.com/' }}">{!! $social_item->getAttributeTranslate('Иконка') !!}</a>
+					<a href="{{ $social_item->getAttributeTranslate('Ссылка') ? $social_item->getAttributeTranslate('Ссылка') : 'https://www.facebook.com/' }}" target="_blank">{!! $social_item->getAttributeTranslate('Иконка') !!}</a>
 				@endforeach
 			</div>
 		</div>

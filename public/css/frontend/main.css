@@ -825,7 +825,7 @@ span.text {
     transition: all .5s; }
 
 .section-portfolio-item{
-  padding: 40px 50px 40px 300px;
+  padding: 40px 60px 40px 300px;
   background-color: #f4f4f4;}
 /*********************/
 .portfolio-item-wrap{
@@ -854,7 +854,6 @@ span.text {
   height: 300px;
   float: left;
   margin: 10px;
-  background-color: #fff;
   overflow: hidden;}
 .he2{
   height: 620px;}
