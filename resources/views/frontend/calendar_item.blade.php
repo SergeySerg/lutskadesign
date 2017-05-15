@@ -3,6 +3,7 @@
     <div class="calendar-item-page-section">
         <div class="calendar-item-page-wrap">
             <div class="calendar-item-page-img" style="background-image: url('{{ asset($article->getAttributeTranslate('Картинка')) }}');">
+                <img src="{{ asset($article->getAttributeTranslate('Картинка')) }}" style="width: 100%; height: auto;">
                 <div class="share42init"
                      data-url="{{Request::url()}}"
                      data-title="{{ $article->getTranslate('title') }}"

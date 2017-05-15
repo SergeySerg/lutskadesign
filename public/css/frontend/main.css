@@ -191,21 +191,21 @@ body {
   0% {
     color: #fff; }
   50% {
-    color: #FBB; }
+    color: #cae3e8; }
   100% {
-    color: #e77983; } }
+    color: #8CB3BB; } }
 
 @keyframes blink {
   0% {
     color: #fff; }
   50% {
-    color: #FBB; }
+    color: #cae3e8; }
   100% {
-    color: #e77983; } }
+    color: #8CB3BB; } }
 
 #arrow-down:hover {
-  border: 1px solid #e77983;
-  color: #e77983;
+  border: 1px solid #8CB3BB;
+  color: #8CB3BB;
   cursor: pointer; }
 
 .about-section {
@@ -249,7 +249,7 @@ body {
   transition: all .5s ease; }
 
 .description-wrap a:hover {
-  color: #e77983;
+  color: #8CB3BB;
   -webkit-transition: all .5s ease;
   transition: all .5s ease; }
 
@@ -305,7 +305,7 @@ body {
   transition: all .5s ease; }
 
 .footer a:hover {
-  color: #e77983;
+  color: #8CB3BB;
   -webkit-transition: all .5s ease;
   transition: all .5s ease; }
 
@@ -354,7 +354,7 @@ body {
   text-align: center; }
 
 .social a:hover {
-  border: 1px solid #e77983; }
+  border: 1px solid #8CB3BB; }
 
 .social .fa {
   margin-right: 0;
@@ -391,8 +391,8 @@ body {
   transition: all .5s ease; }
 
 .more-portfolio-link:hover {
-  border: 1px solid #e77983;
-  color: #e77983;
+  border: 1px solid #8CB3BB;
+  color: #8CB3BB;
   -webkit-transition: all .5s ease;
   transition: all .5s ease; }
 
@@ -455,8 +455,8 @@ hr {
 
 .services-content-link:hover,
 .services-content-link.active {
-  border-bottom: 1px dashed #e77983;
-  color: #e77983;
+  border-bottom: 1px dashed #8CB3BB;
+  color: #8CB3BB;
   -webkit-transition: all .5s ease;
   transition: all .5s ease; }
 
@@ -484,7 +484,7 @@ hr {
   content: '';
   width: 4px;
   height: 4px;
-  background-color: #e77983; }
+  background-color: #8CB3BB; }
 
 .services-content {
   display: table;
@@ -540,7 +540,7 @@ hr {
   .contact-info .phone a {
     display: inline-block;
     margin-top: 5px;
-    color: #e77983;
+    color: #8CB3BB;
     font-family: "Verdana", sans-serif;
     font-size: 18px;
     text-decoration: none; }
@@ -590,7 +590,7 @@ hr {
     font-style: italic;
     font-size: 13px; }
   .portfolio-item a:hover .portfolio-item-title {
-    color: #e77983;
+    color: #8CB3BB;
     -webkit-transition: all .5s ease;
     transition: all .5s ease; }
   .portfolio-item a:hover .portfolio-item-img-bg {
@@ -644,7 +644,7 @@ hr {
     -webkit-transition: all .5s ease;
     transition: all .5s ease; }
     .calendar-item-title a:hover {
-      color: #e77983;
+      color: #8CB3BB;
       -webkit-transition: all .5s ease;
       transition: all .5s ease; }
   .calendar-item-date {
@@ -687,13 +687,14 @@ hr {
 
 .calendar-item-page-wrap {
   width: 100%;
+  max-width: 950px;
   min-height: 600px;
+  margin: 0 auto;
   background-color: #ffffff; }
 
 .calendar-item-page-img {
   position: relative;
   width: 100%;
-  height: 450px;
   background-size: cover; }
 
 .calendar-item-page-title {
@@ -759,7 +760,9 @@ span.text {
   height: 700px;
   background-size: cover;
   background-position: left top;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  -webkit-filter: invert(1) brightness(115%);
+  filter: invert(1) brightness(115%); }
 
 .portfolio-item-main {
   position: relative;
@@ -816,8 +819,8 @@ span.text {
     padding-top: 15px;
     font-size: 24px; }
   .share-btn:hover {
-    border: 1px solid #e77983;
-    color: #e77983;
+    border: 1px solid #8CB3BB;
+    color: #8CB3BB;
     -webkit-transition: all .5s;
     transition: all .5s; }
 
@@ -963,8 +966,8 @@ span.text {
 
 .owl-prev:hover,
 .owl-next:hover {
-  border: 1px solid #e77983;
-  color: #e77983; }
+  border: 1px solid #8CB3BB;
+  color: #8CB3BB; }
 
 .owl-prev {
   right: 116px; }

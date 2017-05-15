@@ -3,7 +3,7 @@
 @section('content')
     <div class="contact-section clearfix">
         <div class="first-img" style="background-image: url('{{ asset('img/frontend/contact_1.jpg') }}');"></div>
-        <div class="second-img" style="background-image: url('{{ asset('img/frontend/contact_2.jpg') }}');"></div>
+        <div class="second-img" style="background-image: url('{{ asset('img/frontend/contact.png') }}');"></div>
 {{--
         <div class="contact-info">
             <h4>{{ $texts->get('name_studio') }}</h4>
