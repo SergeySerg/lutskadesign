@@ -122,13 +122,19 @@ $(function(){
 /**********END show services list**************/
 
 /**********Aligh vertical **************/
-    $('.calendar-section-wrap' ).masonry({
-        itemSelector: '.calendar-item'
+
+    $('.calendar-section').imagesLoaded(function () {
+        $('.calendar-section-wrap' ).masonry({
+            itemSelector: '.calendar-item'
+        });
     });
 
-    $('.section-publication' ).masonry({
-        itemSelector: '.publication-item'
+    $('.section-publication').imagesLoaded(function () {
+        $('.section-publication' ).masonry({
+            itemSelector: '.publication-item'
+        });
     });
+
 /**********END aligh vertical **************/
 
     $( '.swipebox' ).swipebox();

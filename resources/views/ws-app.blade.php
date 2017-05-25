@@ -126,6 +126,7 @@
 	<script src="{{ asset('/libs/owl-carousel-2/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/js/unitegallery.js') }}"></script>
 	<script src="{{ asset('/libs/unitegallery/dist/themes/tiles/ug-theme-tiles.js') }}"></script>
+	<script src="{{ asset('/js/frontend/imagesloaded.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/masonry.pkgd.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/jquery.swipebox.min.js') }}"></script>
 	<script src="{{ asset('/js/frontend/common.js') }}?ver={{ $version }}"></script>

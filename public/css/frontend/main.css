@@ -857,6 +857,7 @@ span.text {
   overflow: hidden;}
 .he2{
   height: 620px;}
+.item-img.horizontal img,
 .item-img img{
   position: absolute;
   bottom: 0;
@@ -865,6 +866,7 @@ span.text {
   height: 100% !important;
   vertical-align: middle;
   text-align: right;}
+.item-img.vertical img,
 .item-img.w2 img,
 .item-img.w3 img{
   position: absolute;
