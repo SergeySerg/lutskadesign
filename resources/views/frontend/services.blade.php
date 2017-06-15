@@ -9,7 +9,9 @@
                     <div class="service-item-description-wrap">
                         <h2 class="service-item-name">{{ $service->getTranslate('title') }}</h2>
                         <div class="service-item-description">
+{{--
                             <h3>{{ trans('base.services_desc') }}</h3>
+--}}
                                 {!! $service->getAttributeTranslate('Описание услуги') ? $service->getAttributeTranslate('Описание услуги') : '' !!}
                             <h3>{{ trans('base.termines') }}</h3>
                             {!! $service->getAttributeTranslate('Время исполнения') ? $service->getAttributeTranslate('Время исполнения') : '' !!}

@@ -419,6 +419,7 @@ body {
   padding: 40px; }
 
 .service-item-name {
+  margin-bottom: 15px;
   color: #000000;
   font-size: 32px;
   font-weight: bold; }
@@ -473,7 +474,7 @@ hr {
 
 .service-item-img ul li {
   position: relative;
-  padding: 0 10px 10px 29px;
+  padding: 0 10px 8px 29px;
   color: #000000;
   font-size: 14px; }
 
