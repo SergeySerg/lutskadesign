@@ -995,6 +995,26 @@ span.text {
     margin-top: 50px; }
 }
 
+@media only screen and (min-width: 1600px) {
+  .item{
+    height: 400px;}
+  .item p{
+    max-height: 400px;}
+  .item-img{
+    height: 400px;}
+  .he2{
+    height: 820px;}
+}
+@media only screen and (min-width: 1400px) and (max-width: 1600px) {
+  .item{
+    height: 350px;}
+  .item p{
+    max-height: 350px;}
+  .item-img{
+    height: 350px;}
+  .he2{
+    height: 720px;}
+}
 @media only screen and (min-width: 1400px) {
   .description-wrap {
     right: 10%; }
